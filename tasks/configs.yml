@@ -17,25 +17,28 @@
   get_url:
     url: https://api.github.com/repos/rkm/dotfiles/tarball
     dest: "{{ tempdir.path }}/dotfiles.tgz"
-  changed_when: false # Will always download a fresh copy
+  changed_when: false # Will always be changed
 
 - name: Unarchive the dotfiles
   unarchive:
     src: "{{ tempdir.path }}/dotfiles.tgz"
     dest: "{{ tempdir.path }}/dotfiles"
     remote_src: yes
+    list_files: yes
+  changed_when: false # Will always be changed
+  register: archive_contents
 
 - name: Create combined .gitconfig
   shell: >
     cat
-    "{{ tempdir.path }}/dotfiles/common/.gitconfig"
-    "{{ tempdir.path }}/dotfiles/linux/.gitconfig"
+    "{{ tempdir.path }}/archive_contents.files[0]/common/.gitconfig"
+    "{{ tempdir.path }}/archive_contents.files[0]/linux/.gitconfig"
     > "{{ tempdir.path }}/dotfiles/.gitconfig"
-  changed_when: false
+  changed_when: false # Will always be changed
 
 - name: Copy combined .gitconfig
   copy:
-    src: "{{ tempdir.path }}/dotfiles/.gitconfig"
+    src: "{{ tempdir.path }}/archive_contents.files[0]/.gitconfig"
     remote_src: true
     dest: /home/{{ username }}/.config/git/config
     owner: '{{ username }}'
@@ -45,7 +48,7 @@
 
 - name: Copy dotfiles
   copy:
-    src: "{{ tempdir.path }}/dotfiles/linux/{{ item }}"
+    src: "{{ tempdir.path }}/archive_contents.files[0]/linux/{{ item }}"
     remote_src: true
     dest: /home/{{ username }}/{{ item }}
     owner: '{{ username }}'
