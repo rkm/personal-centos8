@@ -11,7 +11,6 @@
     state: directory
   with_items:
     - git
-    - readline
     - vim
     - vim/backup
     - vim/swap
