@@ -1,5 +1,9 @@
 ---
 
+- name: Set git role workspace to the tempdir
+  set_fact:
+    workspace: "{{ tempdir.path }}"
+
 - name: Run geerlingguy.git
   include_role:
     name: geerlingguy.git
