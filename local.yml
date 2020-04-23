@@ -9,6 +9,8 @@
   tasks:
     - include: tasks/setup.yml
       tags: ['always']
+    - include: tasks/configs.yml
+      tags: ['configs']
     - include: tasks/users.yml
     - include: tasks/git.yml
       tags: ['git']
@@ -18,8 +20,6 @@
     # - include: tasks/go.yml
     #   tags: ['go']
     # - include: tasks/azure_cli.yml
-    - include: tasks/dotfiles.yml
-      tags: ['dotfiles']
     # - include: tasks/dev.yml
     #   tags: ['dev']
     - include: tasks/cleanup.yml

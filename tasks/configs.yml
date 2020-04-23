@@ -1,13 +1,16 @@
 ---
 
-- name: Clone https://github.com/rkm/dotfiles
-  git:
-    repo: https://github.com/rkm/dotfiles
+- name: Download dotfiles archive
+  get_url:
+    url: https://api.github.com/repos/rkm/dotfiles/tarball
+    dest: "{{ tempdir.path }}/dotfiles.tgz"
+  changed_when: false # Will always download a fresh copy
+
+- name: Unarchive the dotfiles
+  unarchive:
+    src: "{{ tempdir.path }}/dotfiles.tgz"
     dest: "{{ tempdir.path }}/dotfiles"
-    depth: 1
-    version: master
-  register: result
-  changed_when: false
+    remote_src: yes
 
 - name: Create combined .gitconfig
   shell: >
@@ -21,15 +24,15 @@
   copy:
     src: "{{ tempdir.path }}/dotfiles/.gitconfig"
     remote_src: true
-    dest: /home/{{ username }}/.gitconfig
+    dest: /home/{{ username }}/.config/git/config
     owner: '{{ username }}'
     group: '{{ username }}'
     mode: 0640
     backup: true
 
-- name: Copy dotfiles
+- name: Copy odtfiles
   copy:
-    src: "{{ tempdir.path }}/dotfiles/linux/{{ item  }}"
+    src: "{{ tempdir.path }}/dotfiles/linux/{{ item }}"
     remote_src: true
     dest: /home/{{ username }}/{{ item }}
     owner: '{{ username }}'
