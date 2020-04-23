@@ -1,7 +1,6 @@
 ---
 
 - hosts: localhost
-  become: true
   vars_files:
     - vars/main.yml
   # environment:
