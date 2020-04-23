@@ -13,6 +13,7 @@
     - include: tasks/users.yml
     - include: tasks/packages.yml    
     - include: tasks/git.yml
+      become: true
     # - include: tasks/python.yml
     #   tags: ['python']
     # - include: tasks/go.yml

@@ -1,6 +1,5 @@
 ---
 
 - name: Run geerlingguy.git
-  become: true
   include_role:
     name: geerlingguy.git
