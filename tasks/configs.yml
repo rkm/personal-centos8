@@ -70,3 +70,4 @@
     - .bashrc
     - .bash_aliases
     - .bash_aliases_azure
+    - .profile
