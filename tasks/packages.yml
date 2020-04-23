@@ -1,6 +1,7 @@
 ---
 
 - name: Install yum packages
+  become: true
   package:
     name:      
       - curl

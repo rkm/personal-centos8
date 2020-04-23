@@ -1,6 +1,7 @@
 ---
 
 - name: Copy sudoers files
+  become: true
   template:
     src: files/sudoers_user
     dest: /etc/sudoers.d/dont-prompt-{{ item }}-for-password
