@@ -71,3 +71,9 @@
     - .bash_aliases
     - .bash_aliases_azure
     - .profile
+
+- name: Create dev directory
+  file:
+    path: /home/{{ username }}/dev
+    state: directory
+    mode: '0770'
