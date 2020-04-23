@@ -71,6 +71,15 @@
     - .bash_aliases_azure
     - .profile
 
+# NOTE(rkm 2020-04-24) Ensures that .profile is always executed
+- name: Ensure .bash_profile doesn't exist
+  file:
+    path: "{{ lookup('env', 'HOME') }}/{{ item }}"
+    state: absent
+  with_items:
+    - ".bash_profile"
+    - ".bash_login"
+
 - name: Create dev directory
   file:
     path: /home/{{ username }}/dev
