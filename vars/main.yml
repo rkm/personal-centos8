@@ -1,0 +1,33 @@
+---
+
+# Set this to your $USER
+username: rkm
+
+python_versions:
+  - 3.7.7
+  - 3.8.2
+
+go_version: 1.13.5
+
+# geerlingguy.ntp
+ntp_timezone: Europe/London
+
+# geerlingguy.git
+git_version: 2.24.1
+git_install_from_source: true
+git_install_from_source_force_update: true
+
+# geerlingguy.docker
+docker_service_state: stopped
+docker_service_enabled: false
+
+# geerlingguy.ruby
+ruby_install_from_source: true
+
+# rkm.dotnet_core
+dotnet_package: 2.2
+
+# gantsign.golang
+golang_version: '1.13.6'
+golang_install_dir: /usr/local/go/{{ golang_version }}
+golang_download_dir: /usr/src/go

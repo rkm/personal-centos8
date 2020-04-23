@@ -1,0 +1,52 @@
+---
+
+- name: Install yum packages
+  package:
+    name:
+      - bind-utils
+      - bzip2
+      - curl
+      - deltarpm
+      - dkms
+      - gcc
+      - gdb
+      - htop
+      - net-tools
+      - nmap
+      - python-pip
+      - readline-devel
+      - rsync
+      - screen
+      - strace
+      - telnet
+      - traceroute
+      - vim
+      - wget
+  tags: ['always']
+
+# - name: Run geerlingguy.ntp
+#   include_role:
+#     name: geerlingguy.ntp
+#   when: not lookup('env', 'DOCKER')
+
+# - name: Set docker username
+#   set_fact:
+#     docker_users: ["{{ username }}"]
+#   when: not lookup('env', 'DOCKER')
+
+# - name: Run geerlingguy.docker
+#   include_role:
+#     name: geerlingguy.docker
+#   when: not lookup('env', 'DOCKER')
+
+# - name: Run geerlingguy.java
+#   include_role:
+#     name: geerlingguy.java
+
+# - name: Run geerlingguy.ruby
+#   include_role:
+#     name: geerlingguy.ruby
+
+# - name: Run rkm.dotnet_core
+#   include_role:
+#     name: rkm.dotnet_core

@@ -1,0 +1,11 @@
+---
+
+- name: Copy sudoers files
+  template:
+    src: files/sudoers_user
+    dest: /etc/sudoers.d/dont-prompt-{{ item }}-for-password
+    owner: root
+    group: root
+    mode: 0440
+  with_list:
+    - "{{ username }}"

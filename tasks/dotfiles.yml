@@ -1,0 +1,44 @@
+---
+
+- name: Clone https://github.com/rkm/dotfiles
+  git:
+    repo: https://github.com/rkm/dotfiles
+    dest: "{{ tempdir.path }}/dotfiles"
+    depth: 1
+    version: master
+  register: result
+  changed_when: false
+
+- name: Create combined .gitconfig
+  shell: >
+    cat
+    "{{ tempdir.path }}/dotfiles/common/.gitconfig"
+    "{{ tempdir.path }}/dotfiles/linux/.gitconfig"
+    > "{{ tempdir.path }}/dotfiles/.gitconfig"
+  changed_when: false
+
+- name: Copy combined .gitconfig
+  copy:
+    src: "{{ tempdir.path }}/dotfiles/.gitconfig"
+    remote_src: true
+    dest: /home/{{ username }}/.gitconfig
+    owner: '{{ username }}'
+    group: '{{ username }}'
+    mode: 0640
+    backup: true
+
+- name: Copy dotfiles
+  copy:
+    src: "{{ tempdir.path }}/dotfiles/linux/{{ item  }}"
+    remote_src: true
+    dest: /home/{{ username }}/{{ item }}
+    owner: '{{ username }}'
+    group: '{{ username }}'
+    mode: 0640
+    backup: true
+  with_items:
+    - .bashrc
+    - .bash_aliases
+    - .bash_aliases_azure
+    - .inputrc
+    - .vimrc

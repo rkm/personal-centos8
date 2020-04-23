@@ -1,0 +1,7 @@
+---
+
+- name: Create tmpdir
+  tempfile:
+    state: directory
+  register: tempdir
+  changed_when: false
