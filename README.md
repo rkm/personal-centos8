@@ -13,14 +13,7 @@ Ansible configuration for my personal CentOS 8 VMs.
 
 ### Manual
 
-```bash
-> sudo yum -y install git epel-release ansible && \
-git clone https://github.com/rkm/personal-centos8 && \
-sudo yum -y remove git && \
-cd !$ && \
-ansible-galaxy install -r requirements.yml && \
-ansible-playbook [-v] [--tags <tags>] local.yml
-```
+Copy & run the `install.sh` script.
 
 ## Configuration
 
