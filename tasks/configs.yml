@@ -22,7 +22,7 @@
 - name: Unarchive the dotfiles
   unarchive:
     src: "{{ tempdir.path }}/dotfiles.tgz"
-    dest: "{{ tempdir.path }}/dotfiles"
+    dest: "{{ tempdir.path }}"
     remote_src: yes
     list_files: yes
   changed_when: false # Will always be changed
