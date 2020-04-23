@@ -12,9 +12,8 @@
     - include: tasks/configs.yml
       tags: ['configs']
     - include: tasks/users.yml
+    - include: tasks/packages.yml    
     - include: tasks/git.yml
-      tags: ['git']
-    - include: tasks/packages.yml
     # - include: tasks/python.yml
     #   tags: ['python']
     # - include: tasks/go.yml

@@ -1,5 +1,18 @@
 ---
 
+- name: Ensure $XDG_DATA_HOME (.config) exists
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.config"
+    state: directory
+
+- name: Create $XDG_DATA_HOME appliction directories
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.config/{{ item }}"
+    state: directory
+  with_items:
+    - git
+    - vim
+
 - name: Download dotfiles archive
   get_url:
     url: https://api.github.com/repos/rkm/dotfiles/tarball
@@ -30,7 +43,7 @@
     mode: 0640
     backup: true
 
-- name: Copy odtfiles
+- name: Copy dotfiles
   copy:
     src: "{{ tempdir.path }}/dotfiles/linux/{{ item }}"
     remote_src: true
