@@ -2,19 +2,13 @@
 
 - name: Install yum packages
   package:
-    name:
-      - bind-utils
-      - bzip2
+    name:      
       - curl
-      - deltarpm
-      - dkms
       - gcc
       - gdb
       - htop
       - net-tools
       - nmap
-      - python-pip
-      - readline-devel
       - rsync
       - screen
       - strace
