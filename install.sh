@@ -7,6 +7,6 @@ curl -L https://api.github.com/repos/rkm/personal-centos8/tarball > repo.tgz && 
 tar xzf repo.tgz && \
 pushd rkm-personal-centos8-* && \
 ansible-galaxy install -r requirements.yml && \
-ansible-playbook [-v] [--tags <tags>] local.yml && \
+ansible-playbook local.yml && \
 popd && \
 rm -r rkm-personal-centos8*
