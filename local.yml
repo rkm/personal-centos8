@@ -10,8 +10,8 @@
     - include: tasks/setup.yml
       tags: ['always']
     - include: tasks/users.yml
-    # - include: tasks/git.yml
-    #   tags: ['git']
+    - include: tasks/git.yml
+      tags: ['git']
     - include: tasks/packages.yml
     # - include: tasks/python.yml
     #   tags: ['python']
