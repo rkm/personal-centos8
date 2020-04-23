@@ -33,12 +33,12 @@
     cat
     "{{ tempdir.path }}/{{ archive_contents.files[0] }}/common/.gitconfig"
     "{{ tempdir.path }}/{{ archive_contents.files[0] }}/linux/.gitconfig"
-    > "{{ tempdir.path }}/dotfiles/.gitconfig"
+    > "{{ tempdir.path }}/.gitconfig"
   changed_when: false # Will always be changed
 
 - name: Copy combined .gitconfig
   copy:
-    src: "{{ tempdir.path }}/{{ archive_contents.files[0] }}/.gitconfig"
+    src: "{{ tempdir.path }}/.gitconfig"
     remote_src: true
     dest: /home/{{ username }}/.config/git/config
     owner: '{{ username }}'
