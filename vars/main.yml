@@ -10,7 +10,8 @@ python_versions:
 go_version: 1.13.5
 
 # geerlingguy.ntp
-ntp_timezone: Europe/London
+ntp_timezone: Etc/UTC
+ntp_tinker_panic: true
 
 # geerlingguy.git
 git_version: 2.26.2

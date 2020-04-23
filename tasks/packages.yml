@@ -1,7 +1,6 @@
 ---
 
 - name: Install yum packages
-  become: true
   package:
     name:      
       - curl
@@ -19,9 +18,9 @@
       - wget
   tags: ['always']
 
-# - name: Run geerlingguy.ntp
-#   include_role:
-#     name: geerlingguy.ntp
+- name: Run geerlingguy.ntp
+  include_role:
+    name: geerlingguy.ntp
 #   when: not lookup('env', 'DOCKER')
 
 # - name: Set docker username
