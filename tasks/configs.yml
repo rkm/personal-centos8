@@ -1,20 +1,20 @@
 ---
 
-- name: Ensure $XDG_DATA_HOME (.config) exists
+- name: Ensure the config and data directories exist
   file:
-    path: "{{ lookup('env', 'HOME') }}/.config"
-    state: directory
-
-- name: Create $XDG_DATA_HOME appliction directories
-  file:
-    path: "{{ lookup('env', 'HOME') }}/.config/{{ item }}"
+    path: "{{ lookup('env', 'HOME') }}/{{ item }}"
     state: directory
   with_items:
-    - git
-    - vim
-    - vim/backup
-    - vim/swap
-    - vim/undo
+    - .config
+    - .config/git
+    - .config/vim
+    - .local
+    - .local/share
+    - .local/share/vim    
+    - .local/share/vim/backup
+    - .local/share/vim/swap
+    - .local/share/vim/undo
+    - .local/share/vim/view
 
 - name: Download dotfiles archive
   get_url:
