@@ -13,16 +13,14 @@ go_version: 1.13.5
 ntp_timezone: Europe/London
 
 # geerlingguy.git
-git_version: 2.24.1
+git_version: 2.26.2
 git_install_from_source: true
 git_install_from_source_force_update: true
+git_install_path: "/opt"
 
 # geerlingguy.docker
 docker_service_state: stopped
 docker_service_enabled: false
-
-# geerlingguy.ruby
-ruby_install_from_source: true
 
 # rkm.dotnet_core
 dotnet_package: 2.2
