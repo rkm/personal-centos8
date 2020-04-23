@@ -56,7 +56,7 @@
     mode: 0660
     backup: true
   with_items:
-    - {src: ".vimrc", dest: "vim/config"}
+    - {src: ".vimrc", dest: "vim/vimrc"}
     - {src: ".inputrc", dest: "readline/inputrc"}
 
 - name: Copy bash dotfiles
