@@ -57,7 +57,7 @@
     backup: true
   with_items:
     - {src: ".vimrc", dest: "vim/vimrc"}
-    - {src: ".inputrc", dest: "readline/inputrc"}
+    - {src: ".inputrc", dest: "inputrc"}
 
 - name: Copy bash dotfiles
   copy:
