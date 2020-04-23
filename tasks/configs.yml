@@ -11,7 +11,11 @@
     state: directory
   with_items:
     - git
+    - readline
     - vim
+    - vim/backup
+    - vim/swap
+    - vim/undo
 
 - name: Download dotfiles archive
   get_url:
@@ -40,24 +44,29 @@
   copy:
     src: "{{ tempdir.path }}/.gitconfig"
     remote_src: true
-    dest: /home/{{ username }}/.config/git/config
-    owner: '{{ username }}'
-    group: '{{ username }}'
-    mode: 0640
+    dest: "{{ lookup('env', 'HOME') }}/.config/git/config"
+    mode: 0660
     backup: true
 
-- name: Copy dotfiles
+- name: Copy configs
+  copy: 
+    src: "{{ tempdir.path }}/{{ archive_contents.files[0] }}/linux/{{ item.src }}"
+    remote_src: true
+    dest: "{{ lookup('env', 'HOME') }}/.config/{{ item.dest }}"
+    mode: 0660
+    backup: true
+  with_items:
+    - {src: ".vimrc", dest: "vim/config"}
+    - {src: ".inputrc", dest: "readline/inputrc"}
+
+- name: Copy bash dotfiles
   copy:
     src: "{{ tempdir.path }}/{{ archive_contents.files[0] }}/linux/{{ item }}"
-    remote_src: true
     dest: /home/{{ username }}/{{ item }}
-    owner: '{{ username }}'
-    group: '{{ username }}'
-    mode: 0640
+    mode: 0660
+    remote_src: true
     backup: true
   with_items:
     - .bashrc
     - .bash_aliases
     - .bash_aliases_azure
-    - .inputrc
-    - .vimrc
