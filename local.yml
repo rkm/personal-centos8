@@ -8,6 +8,7 @@
   tasks:
     - include: tasks/setup.yml
       tags: ['always']
+    - include: tasks/ssh_keys.yml
     - include: tasks/configs.yml
       tags: ['configs']
     - include: tasks/users.yml
