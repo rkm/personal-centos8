@@ -2,7 +2,7 @@
 
 # - src: gantsign.golang
 # - src: geerlingguy.ansible
-# - src: geerlingguy.docker
+- src: geerlingguy.docker
 - src: geerlingguy.git
 # - src: geerlingguy.java
 - src: geerlingguy.ntp

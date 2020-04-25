@@ -16,6 +16,7 @@
       become: true
     - include: tasks/packages.yml
       become: true
+      tags: ['packages']
     # - include: tasks/python.yml
     #   tags: ['python']
     # - include: tasks/go.yml
