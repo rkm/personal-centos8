@@ -1,0 +1,22 @@
+---
+
+# NOTE(rkm 2020-04-25) Not using the nmcli role, as it requires extra system packages
+# NOTE(rkm 2020-04-25) Assumes enp0s3 LAN interface
+
+- name: Get DNS servers
+  command: nmcli -t -f IP4.DNS device show enp0s3
+  register: result
+  changed_when: false
+
+- name: Set DNS servers
+  become: true
+  command: nmcli con mod enp0s3 ipv4.dns "1.1.1.1 8.8.8.8"
+  changed_when: false
+  when: "'1.1.1.1' not in result.stdout"
+
+- name: Reload NetworkManager
+  become: true
+  systemd:
+    name: NetworkManager
+    state: reloaded
+  when: "'1.1.1.1' not in result.stdout"
