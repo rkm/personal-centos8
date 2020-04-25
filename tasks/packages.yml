@@ -10,11 +10,15 @@
     name:
       - bzip2
       - curl
+      - dkms
       - gcc
       - gdb
       - htop
+      - kernel-headers
+      - kernel-devel
       - net-tools
       - nmap
+      - perl
       - rsync
       - screen
       - strace
