@@ -12,14 +12,16 @@
   fail:
     msg: "Key missing: {{ item.invocation.module_args.path }}"
   when:
-    - item.stat.exists | bool == False
+    - not item.stat.exists | bool
   with_items:
     - "{{ ssh_stat.results[0] }}"
     - "{{ ssh_stat.results[1] }}"
 
 - name: Assert ssh key modes
   fail:
-    msg: "Incorrect mode for key: {{ item.invocation.module_args.path }}. Required 0400, current {{ item.stat.mode }}"
+    msg: >-
+      "Incorrect mode for key: {{ item.invocation.module_args.path }}."
+      "Required 0400, current {{ item.stat.mode }}"
   when:
     - item.stat.mode != '0400'
   with_items:

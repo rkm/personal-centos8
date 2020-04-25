@@ -10,9 +10,10 @@
 - name: Force git install if the version numbers do not match
   set_fact:
     git_reinstall_from_source: true
-  when:
-    - git_installed_version.rc == 0
-    - git_installed_version.stdout | regex_replace("^.*?([0-9\.]+)$", "\\1") is version(git_version, operator="!=")     
+  when: >
+    git_installed_version.rc == 0 and
+    (git_installed_version.stdout | regex_replace("^.*?([0-9\.]+)$", "\\1")
+      is version(git_version, operator="!="))
 
 - name: Set git role workspace to the tempdir
   set_fact:

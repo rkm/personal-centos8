@@ -1,8 +1,14 @@
 ---
 
-- name: Install yum packages
+- name: dnf update
   package:
-    name:      
+    name: "*"
+    state: latest  # noqa: 403
+
+- name: Install dnf packages
+  package:
+    name:
+      - bzip2
       - curl
       - gcc
       - gdb
@@ -16,7 +22,6 @@
       - traceroute
       - vim
       - wget
-  tags: ['always']
 
 - name: Run geerlingguy.ntp
   include_role:
