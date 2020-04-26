@@ -16,8 +16,10 @@
       - gdb
       - htop
       - jq
-      - kernel-headers
       - kernel-devel
+      - kernel-headers
+      - llvm
+      - llvm-devel
       - net-tools
       - nmap
       - perl
