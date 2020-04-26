@@ -1,22 +1,80 @@
 ---
 
 # NOTE(rkm 2020-04-25) Not using the nmcli role, as it requires extra system packages
-# NOTE(rkm 2020-04-25) Assumes enp0s3 LAN interface
+# NOTE(rkm 2020-04-25) Assumes enp0s3 LAN interface and enp0s8 host interface
+
+- name: Get host zone
+  become: true
+  shell: |
+    set -o pipefail
+    firewall-cmd --list-all-zones | grep host
+  args:
+    executable: /bin/bash
+  changed_when: false
+  register: host_zone
+
+- name: Create host zone
+  become: true
+  copy:
+    src: files/host.xml
+    dest: /etc/firewalld/zones/host.xml
+  register: host_zone
+  when: "'host' not in host_zone.stdout"
+
+- name: Ensure masquerade is enabled for public zone
+  become: true
+  firewalld:
+    zone: public
+    masquerade: "true"
+    permanent: yes
+    state: enabled
+  register: public_zone
+
+- name: Reload firewalld  # noqa: 503
+  become: true
+  systemd:
+    name: firewalld
+    state: restarted
+  when: public_zone.changed | bool or host_zone.changed | bool
 
 - name: Get DNS servers
   command: nmcli -t -f IP4.DNS device show enp0s3
-  register: result
+  register: dns_result
   changed_when: false
 
 - name: Set DNS servers
   become: true
   command: nmcli con mod enp0s3 ipv4.dns "1.1.1.1 8.8.8.8"
   changed_when: false
-  when: "'1.1.1.1' not in result.stdout"
+  when: "'1.1.1.1' not in dns_result.stdout"
+
+- name: Get interface zones
+  shell: |
+    set -o pipefail
+    nmcli con show {{ item }} | grep zone
+  args:
+    executable: /bin/bash
+  register: zone_result
+  changed_when: false
+  with_items:
+    - enp0s3
+    - enp0s8
+
+- name: Set interface zones
+  become: true
+  command: nmcli con mod {{ item.stdout.item }} connection.zone {{ item.zone }}
+  when: "item.zone not in item.stdout.stdout"
+  register: zone_result
+  with_items:
+    - { stdout: "{{ zone_result.results[0] }}", zone: public }
+    - { stdout: "{{ zone_result.results[1] }}", zone: host }
 
 - name: Reload NetworkManager
   become: true
   systemd:
     name: NetworkManager
     state: reloaded
-  when: "'1.1.1.1' not in result.stdout"
+  when: >
+    ("1.1.1.1" not in dns_result.stdout) or
+    ( not zone_result.results[0].skipped) or
+    ( not zone_result.results[1].skipped)
