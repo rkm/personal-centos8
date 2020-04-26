@@ -10,6 +10,8 @@
     - .config/vim
     - .local
     - .local/share
+    - .local/share/cargo
+    - .local/share/rustup
     - .local/share/vim
     - .local/share/vim/backup
     - .local/share/vim/swap
