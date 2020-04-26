@@ -8,6 +8,7 @@
 - name: Install dnf packages
   package:
     name:
+      - bind-utils
       - bzip2
       - curl
       - dkms
