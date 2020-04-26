@@ -10,6 +10,8 @@
     name:
       - bind-utils
       - bzip2
+      - clang
+      - clang-devel
       - curl
       - dkms
       - gcc
