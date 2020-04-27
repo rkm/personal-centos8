@@ -3,8 +3,6 @@
 - hosts: localhost
   vars_files:
     - vars/main.yml
-  # environment:
-  #   - PATH: /usr/local/bin:{{ ansible_env.PATH  }}
   tasks:
     - include: tasks/setup.yml
       tags: ['always']
@@ -18,12 +16,5 @@
     - include: tasks/packages.yml
       become: true
       tags: ['packages']
-    # - include: tasks/python.yml
-    #   tags: ['python']
-    # - include: tasks/go.yml
-    #   tags: ['go']
-    # - include: tasks/azure_cli.yml
-    # - include: tasks/dev.yml
-    #   tags: ['dev']
     - include: tasks/cleanup.yml
       tags: ['always']
