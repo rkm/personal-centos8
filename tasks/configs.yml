@@ -82,9 +82,3 @@
   with_items:
     - ".bash_profile"
     - ".bash_login"
-
-- name: Create dev directory
-  file:
-    path: /home/{{ username }}/dev
-    state: directory
-    mode: '0770'

@@ -16,5 +16,7 @@
     - include: tasks/packages.yml
       become: true
       tags: ['packages']
+    - include: tasks/repos.yml
+      tags: ['repos']
     - include: tasks/cleanup.yml
       tags: ['always']

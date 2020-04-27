@@ -5,6 +5,7 @@
     name: "*"
     state: latest  # noqa: 403
 
+# TODO(rkm 2020-04-27) Move these to a vars array
 - name: Install dnf packages
   package:
     name:
