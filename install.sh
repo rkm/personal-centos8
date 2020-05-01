@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ "$(stat ~/.ssh/id_rsa* | grep 0400 | wc -l)" != "2" ]; then
+    echo Install ssh keys with correct permissions first!
+    exit 1
+fi
+
 sudo dnf -y update && \
 sudo dnf -y install epel-release && \
 sudo dnf -y install ansible && \
