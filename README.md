@@ -3,6 +3,14 @@
 
 Ansible configuration for my personal CentOS 8 VMs.
 
+This is based on a fresh VirtualBox VM based on the `CentOS-8.1.1911-x86_64-boot.iso` image.
+
+It currently requires two network adapters to be present
+  - `enp0s3` - NAT adapter
+  - `enp0s8` - Host-only adapter
+
+The 3/8 naming seems to happen by default when you add the adapters in VirtualBox.
+
 ## Usage
 
 ### Automatic
