@@ -2,6 +2,7 @@
 
 - name: Clone repos  # noqa: 401
   git:
+    executable: "{{ git_install_path }}/bin/git"
     repo: git@github.com:{{ item }}
     dest: /home/rkm/dev/{{ item }}
     update: false
