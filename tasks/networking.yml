@@ -10,6 +10,7 @@
   args:
     executable: /bin/bash
   changed_when: false
+  failed_when: false
   register: host_zone
 
 - name: Create host zone
