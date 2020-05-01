@@ -1,8 +1,8 @@
 #!/bin/bash
 
-sudo yum -y update && \
-sudo yum -y install epel-release && \
-sudo yum -y install ansible && \
+sudo dnf -y update && \
+sudo dnf -y install epel-release && \
+sudo dnf -y install ansible && \
 curl -L https://api.github.com/repos/rkm/personal-centos8/tarball > repo.tgz && \
 tar xzf repo.tgz && \
 pushd rkm-personal-centos8-* && \
