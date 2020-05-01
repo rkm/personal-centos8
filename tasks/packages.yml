@@ -1,5 +1,10 @@
 ---
 
+- name: Ensure /opt/bin exists
+  file:
+    path: /opt/bin
+    state: directory
+
 - name: dnf update
   package:
     name: "*"
