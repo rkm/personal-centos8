@@ -10,7 +10,7 @@ Ansible configuration for my personal CentOS 8 VMs.
 Drop an SSH key pair onto a new VM, and run:
 
 ```bash
-> curl -s https://raw.githubusercontent.com/rkm/personal-centos8/master/install.sh | bash
+> curl -Ls https://raw.githubusercontent.com/rkm/personal-centos8/master/install.sh | bash
 ```
 
 ### Manual

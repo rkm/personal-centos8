@@ -8,7 +8,7 @@ fi
 sudo dnf -y update && \
 sudo dnf -y install epel-release && \
 sudo dnf -y install ansible tar && \
-curl -L https://api.github.com/repos/rkm/personal-centos8/tarball > repo.tgz && \
+curl -Ls https://api.github.com/repos/rkm/personal-centos8/tarball > repo.tgz && \
 tar xzf repo.tgz && \
 pushd rkm-personal-centos8-* && \
 ansible-galaxy install -r requirements.yml && \
