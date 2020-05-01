@@ -14,4 +14,5 @@ pushd rkm-personal-centos8-* && \
 ansible-galaxy install -r requirements.yml && \
 ansible-playbook -K local.yml && \
 popd && \
-rm -r rkm-personal-centos8* repo.tgz
+rm -r rkm-personal-centos8* repo.tgz && \
+echo "Initial install complete - A reboot is recommended"
