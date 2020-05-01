@@ -57,7 +57,8 @@
   register: stat_result
 
 - name: Install rust
+  become: "{{ username }}"
   shell: |
     set -o pipefail
-    curl https://sh.rustup.rs -sSf | sh
+    curl https://sh.rustup.rs -sSf | sh -s -- --profile minimal --no-modify-path -y
   when: not stat_result.stat.exists
