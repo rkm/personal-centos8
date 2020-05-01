@@ -4,7 +4,6 @@
 # NOTE(rkm 2020-04-25) Assumes enp0s3 LAN interface and enp0s8 host interface
 
 - name: Get host zone
-  become: true
   shell: |
     set -o pipefail
     firewall-cmd --list-all-zones | grep host
@@ -14,7 +13,6 @@
   register: host_zone
 
 - name: Create host zone
-  become: true
   copy:
     src: files/host.xml
     dest: /etc/firewalld/zones/host.xml
@@ -22,7 +20,6 @@
   when: "'host' not in host_zone.stdout"
 
 - name: Ensure masquerade is enabled for public zone
-  become: true
   firewalld:
     zone: public
     masquerade: "true"
@@ -31,7 +28,6 @@
   register: public_zone
 
 - name: Reload firewalld  # noqa: 503
-  become: true
   systemd:
     name: firewalld
     state: restarted
@@ -43,7 +39,6 @@
   changed_when: false
 
 - name: Set DNS servers
-  become: true
   command: nmcli con mod enp0s3 ipv4.dns "1.1.1.1 8.8.8.8"
   changed_when: false
   when: "'1.1.1.1' not in dns_result.stdout"
@@ -61,7 +56,6 @@
     - enp0s8
 
 - name: Set interface zones
-  become: true
   command: nmcli con mod {{ item.stdout.item }} connection.zone {{ item.zone }}
   when: "item.zone not in item.stdout.stdout"
   register: zone_result
@@ -70,7 +64,6 @@
     - { stdout: "{{ zone_result.results[1] }}", zone: host }
 
 - name: Reload NetworkManager
-  become: true
   systemd:
     name: NetworkManager
     state: reloaded

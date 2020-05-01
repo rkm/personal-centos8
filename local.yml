@@ -8,6 +8,7 @@
       tags: ['always']
     - include: tasks/ssh_keys.yml
     - include: tasks/networking.yml
+      become: true
     - include: tasks/packages.yml
       become: true
       tags: ['packages']
