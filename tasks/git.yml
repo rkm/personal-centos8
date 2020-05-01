@@ -9,7 +9,7 @@
 
 - name: Force git install if the version numbers do not match
   set_fact:
-    git_reinstall_from_source: true
+    require_git_install: true
   when: >
     git_installed_version.rc != 0 or
     (git_installed_version.stdout | regex_replace("^.*?([0-9\.]+)$", "\\1")
@@ -19,10 +19,10 @@
   set_fact:
     workspace: "{{ tempdir.path }}"
   when:
-    - git_reinstall_from_source | default(false)
+    - require_git_install | default(false)
 
 - name: Run geerlingguy.git
   include_role:
     name: geerlingguy.git
   when:
-    - git_reinstall_from_source | default(false)
+    - require_git_install | default(false)
