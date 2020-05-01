@@ -8,14 +8,14 @@
       tags: ['always']
     - include: tasks/ssh_keys.yml
     - include: tasks/networking.yml
+    - include: tasks/packages.yml
+      become: true
+      tags: ['packages']
     - include: tasks/configs.yml
       tags: ['configs']
     - include: tasks/users.yml
     - include: tasks/git.yml
       become: true
-    - include: tasks/packages.yml
-      become: true
-      tags: ['packages']
     - include: tasks/repos.yml
       tags: ['repos']
     - include: tasks/cleanup.yml
