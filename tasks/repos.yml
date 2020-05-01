@@ -2,9 +2,11 @@
 
 - name: Clone repos  # noqa: 401
   git:
+    accept_hostkey: true
+    dest: /home/rkm/dev/{{ item }}
     executable: "{{ git_install_path }}/bin/git"
     repo: git@github.com:{{ item }}
-    dest: /home/rkm/dev/{{ item }}
+    ssh_opts: -o StrictHostKeyChecking=no
     update: false
   with_items:
      - rkm/ansible-role-dotnet-core
