@@ -19,6 +19,16 @@
   register: fetch_result
   changed_when: fetch_result.rc != 0
 
+# NOTE(rkm 2020-05-02) Uses the prune tags git alias
+- name: Prune tags
+  shell: |
+    set -o pipefail
+    find {{ lookup('env', 'HOME') }}/dev -type f -name .git |
+    xargs dirname |
+    xargs -l -I{} git -C {} pt
+  register: fetch_result
+  changed_when: fetch_result.rc != 0
+
 # TODO(rkm 2020-04-27) Clone docs + notebooks
 # TODO(rkm 2020-04-27) Replace rkm/* repos with API call to get latest
 # TODO(rkm 2020-04-2&) Link alan-turing-institute -> ati
