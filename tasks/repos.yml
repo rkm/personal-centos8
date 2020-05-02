@@ -1,5 +1,7 @@
 ---
 
+# TODO(rkm 2020-04-27) Clone docs + notebooks
+
 - name: Get all org repos
   shell: |
     set -o pipefail
@@ -43,5 +45,8 @@
   register: fetch_result
   changed_when: fetch_result.rc != 0
 
-# TODO(rkm 2020-04-27) Clone docs + notebooks
-# TODO(rkm 2020-04-2&) Link alan-turing-institute -> ati
+- name: Symlink alan-turing-institute -> ati
+  file:
+    src: "{{ lookup('env', 'HOME') }}/dev/alan-turing-institute"
+    dest: "{{ lookup('env', 'HOME') }}/dev/ati"
+    state: link
