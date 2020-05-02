@@ -8,29 +8,7 @@
     repo: git@github.com:{{ item }}
     ssh_opts: -o StrictHostKeyChecking=no
     update: false
-  with_items:
-     - rkm/ansible-role-dotnet-core
-     - rkm/dotfiles
-     - rkm/personal-centos8
-     - rkm/serenity
-     - smi/SmiServices
-     - smi/integration
-     - HicServices/BadMedicine
-     - HicServices/BadMedicine.Dicom
-     - HicServices/DicomTemplateBuilder
-     - HicServices/DicomTypeTranslation
-     - HicServices/FAnsiSql
-     - HicServices/RDMP
-     - HicServices/RDMPDicom
-     - alan-turing-institute/aviary
-     - alan-turing-institute/bluebird
-     - alan-turing-institute/bluesky
-     - alan-turing-institute/DataScienceSkills
-     - alan-turing-institute/dodo
-     - alan-turing-institute/nats
-     - alan-turing-institute/nats-birdhouse
-     - alan-turing-institute/simurgh
-     - alan-turing-institute/twitcher
+  with_items: "{{ persistent_repos }}"
 
 # TODO(rkm 2020-04-27) Fetch all
 # TODO(rkm 2020-04-27) Clone docs + notebooks
