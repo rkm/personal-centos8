@@ -10,7 +10,15 @@
     update: false
   with_items: "{{ persistent_repos }}"
 
-# TODO(rkm 2020-04-27) Fetch all
+- name: Fetch all repos
+  shell: |
+    set -o pipefail
+    find {{ lookup('env', 'HOME') }}/dev -type f -name .git |
+    xargs dirname |
+    xargs -l -I{} git -C {} fetch --all --prune
+  register: fetch_result
+  changed_when: fetch_result.rc != 0
+
 # TODO(rkm 2020-04-27) Clone docs + notebooks
 # TODO(rkm 2020-04-27) Replace rkm/* repos with API call to get latest
 # TODO(rkm 2020-04-2&) Link alan-turing-institute -> ati
