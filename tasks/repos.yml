@@ -1,5 +1,17 @@
 ---
 
+- name: Get all personal repos
+  shell: |
+    set -o pipefail
+    curl https://api.github.com/users/rkm/repos |
+    jq -r '.[] | .full_name'
+  changed_when: false
+  register: personal_repos_result
+
+- name: Build repo list
+  set_fact:
+    persistent_repos: "{{ personal_repos_result.stdout_lines | list + persistent_repos }}"
+
 - name: Clone repos  # noqa: 401
   git:
     accept_hostkey: true
@@ -30,5 +42,5 @@
   changed_when: fetch_result.rc != 0
 
 # TODO(rkm 2020-04-27) Clone docs + notebooks
-# TODO(rkm 2020-04-27) Replace rkm/* repos with API call to get latest
 # TODO(rkm 2020-04-2&) Link alan-turing-institute -> ati
+# TODO(rkm 202-05-02) Do the same for SMI as for rkm org

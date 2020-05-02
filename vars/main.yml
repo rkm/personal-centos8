@@ -27,10 +27,6 @@ golang_version: '1.14.2'
 golang_install_dir: /opt/go/{{ golang_version }}
 
 persistent_repos:
-   - rkm/ansible-role-dotnet-core
-   - rkm/dotfiles
-   - rkm/personal-centos8
-   - rkm/serenity
    - smi/SmiServices
    - smi/integration
    - HicServices/BadMedicine
