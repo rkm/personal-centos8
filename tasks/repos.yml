@@ -1,16 +1,18 @@
 ---
 
-- name: Get all personal repos
+- name: Get all org repos
   shell: |
     set -o pipefail
-    curl https://api.github.com/users/rkm/repos |
+    curl -s https://api.github.com/users/{{ item }}/repos |
     jq -r '.[] | .full_name'
+  with_items: "{{ github_orgs }}"
   changed_when: false
-  register: personal_repos_result
+  register: github_org_repos
 
 - name: Build repo list
   set_fact:
-    persistent_repos: "{{ personal_repos_result.stdout_lines | list + persistent_repos }}"
+    persistent_repos: "{{ item.stdout_lines | list + persistent_repos }}"
+  with_items: "{{ github_org_repos.results }}"
 
 - name: Clone repos  # noqa: 401
   git:
@@ -43,4 +45,3 @@
 
 # TODO(rkm 2020-04-27) Clone docs + notebooks
 # TODO(rkm 2020-04-2&) Link alan-turing-institute -> ati
-# TODO(rkm 202-05-02) Do the same for SMI as for rkm org

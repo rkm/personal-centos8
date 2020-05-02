@@ -26,9 +26,11 @@ docker_compose_path: /opt/bin/docker-compose
 golang_version: '1.14.2'
 golang_install_dir: /opt/go/{{ golang_version }}
 
+github_orgs:
+  - rkm
+  - smi
+
 persistent_repos:
-   - smi/SmiServices
-   - smi/integration
    - HicServices/BadMedicine
    - HicServices/BadMedicine.Dicom
    - HicServices/DicomTemplateBuilder
