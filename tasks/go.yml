@@ -7,8 +7,8 @@
 - name: Link to /usr/local/bin
   become: true
   file:
-    src: /usr/local/go/{{ golang_version }}/bin/go
-    dest: /usr/local/bin/go
+    src: "{{ golang_install_dir }}/bin/go"
+    dest: /opt/bin/go
     owner: root
     group: root
     state: link

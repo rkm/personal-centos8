@@ -21,3 +21,8 @@ git_install_path: "/opt"
 docker_service_enabled: false
 docker_compose_version: "1.25.5"
 docker_compose_path: /opt/bin/docker-compose
+
+# gantsign.golang
+golang_version: '1.14.2'
+golang_install_dir: /opt/go/{{ golang_version }}
+# golang_download_dir: /usr/src/go/

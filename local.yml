@@ -18,5 +18,7 @@
       become: true
     - include: tasks/repos.yml
       tags: ['repos']
+    - include: tasks/go.yml
+      tags: ['go']
     - include: tasks/cleanup.yml
       tags: ['always']
