@@ -10,6 +10,4 @@ install:
   - docker exec centos8 bash -c "useradd -m $username"
 
 script:
-  - "docker exec centos8 bash -c 'wget https://raw.githubusercontent.com/rkm/personal-centos8/master/install.sh'"
-  - docker exec centos8 bash -c "chmod +x install.sh"
-  - docker exec -e DOCKER=1 centos8 bash -c "./install.sh"
+  - docker exec centos8 bash -c 'curl -Ls https://raw.githubusercontent.com/rkm/personal-centos8/master/install.sh | bash'
