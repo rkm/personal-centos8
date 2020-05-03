@@ -1,21 +1,15 @@
 ---
 
 os: linux
-
-language: python
-python:
-  - "3.7"
-
+language: generic
 services: docker
 
 install:
-  - docker run -td --rm --name centos7 centos:7
-  - docker exec centos7 bash -c "yum -y install wget sudo"
+  - docker run -td --rm --name centos8 centos:8
   - username=$(grep username vars/main.yml | cut -d" " -f 2)
-  - docker exec centos7 bash -c "useradd -m $username"
+  - docker exec centos8 bash -c "useradd -m $username"
 
 script:
-  - "docker exec centos7 bash -c 'wget https://raw.githubusercontent.com/rkm/\
-    personal-centos7-ansible/master/install.sh'"
-  - docker exec centos7 bash -c "chmod +x install.sh"
-  - docker exec -e DOCKER=1 centos7 bash -c "./install.sh"
+  - "docker exec centos8 bash -c 'wget https://raw.githubusercontent.com/rkm/personal-centos8/master/install.sh'"
+  - docker exec centos8 bash -c "chmod +x install.sh"
+  - docker exec -e DOCKER=1 centos8 bash -c "./install.sh"
