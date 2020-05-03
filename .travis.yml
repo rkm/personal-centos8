@@ -8,7 +8,7 @@ install:
   - docker run -td --rm --name centos8 centos:8
   - username=$(grep username vars/main.yml | cut -d" " -f 2)
   - docker exec centos8 bash -c "useradd -m $username"
-  - docker exec centos8 bash -c "dnf install epel-release && dnf install ansible"
+  - docker exec centos8 bash -c "dnf install epel-release && dnf update && dnf install ansible"
 
 script:
   - docker exec centos8 bash -c " ansible-pull -U https://github.com/rkm/personal-centos8"
