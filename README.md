@@ -28,3 +28,7 @@ Copy & run the `install.sh` script.
 ## Configuration
 
 See `vars/main.yml` for configurable settings. You should at least change the `username`.
+
+## TODO
+
+- Add a "no root" / shared system mode
