@@ -29,7 +29,7 @@
 - name: Fetch all repos
   shell: |
     set -o pipefail
-    find {{ lookup('env', 'HOME') }}/dev -type f -name .git |
+    find {{ lookup('env', 'HOME') }}/dev -type d -name .git |
     xargs dirname |
     xargs -l -I{} git -C {} fetch --all --prune
   register: fetch_result
