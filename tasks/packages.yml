@@ -38,6 +38,7 @@
       - strace
       - telnet
       - traceroute
+      - tree
       - usbutils
       - vim
       - wget
