@@ -32,3 +32,4 @@ See `vars/main.yml` for configurable settings. You should at least change the `u
 ## TODO
 
 - Add a "no root" / shared system mode
+- Add packages for building rpms
