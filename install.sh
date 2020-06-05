@@ -5,8 +5,8 @@ set -euxo pipefail
 PKG=dnf
 OS=8
 
-if [ "$(stat ~/.ssh/id_rsa* | grep 0400 | wc -l)" != "2" ]; then
-    echo Install ssh keys with correct permissions first!
+if [ ! -f ~/.ssh/id_rsa ] && ! ssh-add -l &> /dev/null ; then
+    echo Error: Need an ssh key to continue
     exit 1
 fi
 
