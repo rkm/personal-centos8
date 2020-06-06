@@ -5,7 +5,7 @@ set -euxo pipefail
 PKG=dnf
 OS=8
 
-if [ ! -f ~/.ssh/id_rsa ] && ! ssh-add -l &> /dev/null ; then
+if [ ! -f ~/.ssh/id_* ] && ! ssh-add -l &> /dev/null ; then
     echo Error: Need an ssh key to continue
     exit 1
 fi
