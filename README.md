@@ -34,6 +34,7 @@ See `vars/main.yml` for configurable settings. You should at least change the `u
 - Add a "no root" / shared system mode
 - Add packages for building rpms
 - Handle deleted repos (mainly forks) in "fetch all repos" task
+    - warn on deleted instead of failing, and mark as changed
 - add maven
 - use alternatives instead of setting symlinks manually
 - `rustup update` -> "installing" in stdout
