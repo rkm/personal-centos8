@@ -27,11 +27,7 @@
   with_items: "{{ persistent_repos }}"
 
 - name: Fetch all repos
-  shell: |
-    set -o pipefail
-    find {{ lookup('env', 'HOME') }}/dev -type d -name .git |
-    xargs dirname |
-    xargs -l -I{} git -C {} fetch --all --prune
+  script: fetch_all.py {{ lookup('env', 'HOME') }}/dev
   register: fetch_result
   changed_when: fetch_result.rc != 0
 
