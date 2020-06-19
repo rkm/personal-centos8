@@ -8,6 +8,7 @@
     - .config
     - .config/docker
     - .config/git
+    - .config/maven
     - .config/npm
     - .config/vim
     - .local
@@ -61,8 +62,9 @@
     mode: 0660
     backup: true
   with_items:
-    - { src: ".vimrc", dest: "vim/vimrc" }
     - { src: ".inputrc", dest: "inputrc" }
+    - { src: ".vimrc", dest: "vim/vimrc" }
+    - { src: "maven/settings.xml", dest: "maven/settings.xml" }
 
 - name: Copy bash dotfiles
   copy:
