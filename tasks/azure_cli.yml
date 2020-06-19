@@ -1,5 +1,4 @@
 ---
-
 - name: Register version check
   command: az --version
   register: current_version
@@ -8,23 +7,23 @@
 
 - name: Install Azure CLI - repo key
   rpm_key:
-    state: present
-    key: https://packages.microsoft.com/keys/microsoft.asc
+      state: present
+      key: https://packages.microsoft.com/keys/microsoft.asc
   when: current_version.rc != 0
 
 - name: Install Azure CLI - create repo
   shell: |
-    echo "
-    [azure-cli]
-    name=Azure CLI
-    baseurl=https://packages.microsoft.com/yumrepos/azure-cli
-    enabled=1
-    gpgcheck=1
-    gpgkey=https://packages.microsoft.com/keys/microsoft.asc
-    " > /etc/yum.repos.d/azure-cli.repo
+      echo "
+      [azure-cli]
+      name=Azure CLI
+      baseurl=https://packages.microsoft.com/yumrepos/azure-cli
+      enabled=1
+      gpgcheck=1
+      gpgkey=https://packages.microsoft.com/keys/microsoft.asc
+      " > /etc/yum.repos.d/azure-cli.repo
   when: current_version.rc != 0
 
 - name: Install Azure CLI - yum package
   yum:
-    name:
-      - azure-cli
+      name:
+          - azure-cli

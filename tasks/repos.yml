@@ -1,29 +1,28 @@
 ---
-
 # TODO(rkm 2020-04-27) Clone docs + notebooks
 
 - name: Get all org repos
   shell: |
-    set -o pipefail
-    curl -s https://api.github.com/users/{{ item }}/repos |
-    jq -r '.[] | .full_name'
+      set -o pipefail
+      curl -s https://api.github.com/users/{{ item }}/repos |
+      jq -r '.[] | .full_name'
   with_items: "{{ github_orgs }}"
   changed_when: false
   register: github_org_repos
 
 - name: Build repo list
   set_fact:
-    persistent_repos: "{{ item.stdout_lines | list + persistent_repos }}"
+      persistent_repos: "{{ item.stdout_lines | list + persistent_repos }}"
   with_items: "{{ github_org_repos.results }}"
 
-- name: Clone repos  # noqa: 401
+- name: Clone repos # noqa 401
   git:
-    accept_hostkey: true
-    dest: /home/rkm/dev/{{ item }}
-    executable: "{{ git_install_path }}/bin/git"
-    repo: git@github.com:{{ item }}
-    ssh_opts: -o StrictHostKeyChecking=no
-    update: false
+      accept_hostkey: true
+      dest: /home/rkm/dev/{{ item }}
+      executable: "{{ git_install_path }}/bin/git"
+      repo: git@github.com:{{ item }}
+      ssh_opts: -o StrictHostKeyChecking=no
+      update: false
   with_items: "{{ persistent_repos }}"
 
 - name: Fetch all repos
@@ -34,15 +33,15 @@
 # NOTE(rkm 2020-05-02) Uses the prune tags git alias
 - name: Prune tags
   shell: |
-    set -o pipefail
-    find {{ lookup('env', 'HOME') }}/dev -type f -name .git |
-    xargs dirname |
-    xargs -l -I{} git -C {} pt
+      set -o pipefail
+      find {{ lookup('env', 'HOME') }}/dev -type f -name .git |
+      xargs dirname |
+      xargs -l -I{} git -C {} pt
   register: fetch_result
   changed_when: fetch_result.rc != 0
 
 - name: Symlink alan-turing-institute -> ati
   file:
-    src: "{{ lookup('env', 'HOME') }}/dev/alan-turing-institute"
-    dest: "{{ lookup('env', 'HOME') }}/dev/ati"
-    state: link
+      src: "{{ lookup('env', 'HOME') }}/dev/alan-turing-institute"
+      dest: "{{ lookup('env', 'HOME') }}/dev/ati"
+      state: link

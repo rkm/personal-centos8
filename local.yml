@@ -1,24 +1,23 @@
 ---
-
 - hosts: localhost
   vars_files:
-    - vars/main.yml
+      - vars/main.yml
   tasks:
-    - include: tasks/setup.yml
-      tags: ['always']
-    - include: tasks/networking.yml
-      become: true
-    - include: tasks/packages.yml
-      become: true
-      tags: ['packages']
-    - include: tasks/configs.yml
-      tags: ['configs']
-    - include: tasks/users.yml
-    - include: tasks/git.yml
-      become: true
-    - include: tasks/repos.yml
-      tags: ['repos']
-    - include: tasks/go.yml
-      tags: ['go']
-    - include: tasks/cleanup.yml
-      tags: ['always']
+      - include: tasks/setup.yml
+        tags: ["always"]
+      - include: tasks/networking.yml
+        become: true
+      - include: tasks/packages.yml
+        become: true
+        tags: ["packages"]
+      - include: tasks/configs.yml
+        tags: ["configs"]
+      - include: tasks/users.yml
+      - include: tasks/git.yml
+        become: true
+      - include: tasks/repos.yml
+        tags: ["repos"]
+      - include: tasks/go.yml
+        tags: ["go"]
+      - include: tasks/cleanup.yml
+        tags: ["always"]

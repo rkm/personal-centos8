@@ -1,89 +1,87 @@
 ---
-
 - name: Ensure the config and data directories exist
   file:
-    path: "{{ lookup('env', 'HOME') }}/{{ item }}"
-    state: directory
+      path: "{{ lookup('env', 'HOME') }}/{{ item }}"
+      state: directory
   with_items:
-    - .config
-    - .config/docker
-    - .config/git
-    - .config/maven
-    - .config/npm
-    - .config/vim
-    - .local
-    - .local/share
-    - .local/share/cargo
-    - .local/share/rustup
-    - .local/share/stack
-    - .local/share/vim
-    - .local/share/vim/backup
-    - .local/share/vim/swap
-    - .local/share/vim/undo
-    - .local/share/vim/view
+      - .config
+      - .config/docker
+      - .config/git
+      - .config/maven
+      - .config/npm
+      - .config/vim
+      - .local
+      - .local/share
+      - .local/share/cargo
+      - .local/share/rustup
+      - .local/share/stack
+      - .local/share/vim
+      - .local/share/vim/backup
+      - .local/share/vim/swap
+      - .local/share/vim/undo
+      - .local/share/vim/view
 
 - name: Download dotfiles archive
   get_url:
-    url: https://api.github.com/repos/rkm/dotfiles/tarball
-    dest: "{{ tempdir.path }}/dotfiles.tgz"
-  changed_when: false  # Will always be changed
+      url: https://api.github.com/repos/rkm/dotfiles/tarball
+      dest: "{{ tempdir.path }}/dotfiles.tgz"
+  changed_when: false # Will always be changed
 
 - name: Unarchive the dotfiles
   unarchive:
-    src: "{{ tempdir.path }}/dotfiles.tgz"
-    dest: "{{ tempdir.path }}"
-    remote_src: true
-    list_files: true
-  changed_when: false  # Will always be changed
+      src: "{{ tempdir.path }}/dotfiles.tgz"
+      dest: "{{ tempdir.path }}"
+      remote_src: true
+      list_files: true
+  changed_when: false # Will always be changed
   register: archive_contents
 
 - name: Create combined .gitconfig
   shell: >
-    cat
-    "{{ tempdir.path }}/{{ archive_contents.files[0] }}/common/.gitconfig"
-    "{{ tempdir.path }}/{{ archive_contents.files[0] }}/linux/.gitconfig"
-    > "{{ tempdir.path }}/.gitconfig"
-  changed_when: false  # Will always be changed
+      cat
+      "{{ tempdir.path }}/{{ archive_contents.files[0] }}/common/.gitconfig"
+      "{{ tempdir.path }}/{{ archive_contents.files[0] }}/linux/.gitconfig"
+      > "{{ tempdir.path }}/.gitconfig"
+  changed_when: false # Will always be changed
 
 - name: Copy combined .gitconfig
   copy:
-    src: "{{ tempdir.path }}/.gitconfig"
-    remote_src: true
-    dest: "{{ lookup('env', 'HOME') }}/.config/git/config"
-    mode: 0660
-    backup: true
+      src: "{{ tempdir.path }}/.gitconfig"
+      remote_src: true
+      dest: "{{ lookup('env', 'HOME') }}/.config/git/config"
+      mode: 0660
+      backup: true
 
 - name: Copy configs
   copy:
-    src:
-      "{{ tempdir.path }}/{{ archive_contents.files[0] }}/linux/{{ item.src }}"
-    remote_src: true
-    dest: "{{ lookup('env', 'HOME') }}/.config/{{ item.dest }}"
-    mode: 0660
-    backup: true
+      src: "{{ tempdir.path }}/{{ archive_contents.files[0] }}/linux/{{ item.src }}"
+      remote_src: true
+      dest: "{{ lookup('env', 'HOME') }}/.config/{{ item.dest }}"
+      mode: 0660
+      backup: true
   with_items:
-    - { src: ".inputrc", dest: "inputrc" }
-    - { src: ".vimrc", dest: "vim/vimrc" }
-    - { src: "maven/settings.xml", dest: "maven/settings.xml" }
+      - { src: ".inputrc", dest: "inputrc" }
+      - { src: ".vimrc", dest: "vim/vimrc" }
+      - { src: "maven/settings.xml", dest: "maven/settings.xml" }
 
 - name: Copy bash dotfiles
   copy:
-    src: "{{ tempdir.path }}/{{ archive_contents.files[0] }}/linux/{{ item }}"
-    dest: /home/{{ username }}/{{ item }}
-    mode: 0660
-    remote_src: true
-    backup: true
+      src: "{{ tempdir.path }}/{{ archive_contents.files[0] }}/linux/{{ item }}"
+      dest: /home/{{ username }}/{{ item }}
+      mode: 0660
+      remote_src: true
+      backup: true
   with_items:
-    - .bashrc
-    - .bash_aliases
-    - .bash_aliases_azure
-    - .profile
+      - .bashrc
+      - .bash_aliases
+      - .bash_aliases_azure
+      - .profile
 
 # NOTE(rkm 2020-04-24) Ensures that .profile is always executed
 - name: Remove .bash_profile and .bash_login
   file:
-    path: "{{ lookup('env', 'HOME') }}/{{ item }}"
-    state: absent
+      path: "{{ lookup('env', 'HOME') }}/{{ item }}"
+      state: absent
   with_items:
-    - ".bash_profile"
-    - ".bash_login"
+      - ".bash_profile"
+      - ".bash_login"

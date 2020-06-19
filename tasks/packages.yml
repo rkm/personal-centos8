@@ -1,68 +1,67 @@
 ---
-
 # TODO: python then pip - virtualenv pre-commit
 
 - name: Ensure /opt/bin exists
   file:
-    path: /opt/bin
-    state: directory
+      path: /opt/bin
+      state: directory
 
 - name: dnf update
   package:
-    name: "*"
-    state: latest  # noqa: 403
+      name: "*"
+      state: latest # noqa 403
 
 # TODO(rkm 2020-04-27) Move these to a vars array
 - name: Install dnf packages
   package:
-    name:
-      - bind-utils
-      - bzip2
-      - clang
-      - clang-devel
-      - curl
-      - dkms
-      - gcc
-      - gdb
-      - htop
-      - jq
-      - kernel-devel
-      - kernel-headers
-      - llvm
-      - llvm-devel
-      - net-tools
-      - nmap
-      - perl
-      - rsync
-      - screen
-      - strace
-      - telnet
-      - traceroute
-      - tree
-      - usbutils
-      - vim
-      - wget
+      name:
+          - bind-utils
+          - bzip2
+          - clang
+          - clang-devel
+          - curl
+          - dkms
+          - gcc
+          - gdb
+          - htop
+          - jq
+          - kernel-devel
+          - kernel-headers
+          - llvm
+          - llvm-devel
+          - net-tools
+          - nmap
+          - perl
+          - rsync
+          - screen
+          - strace
+          - telnet
+          - traceroute
+          - tree
+          - usbutils
+          - vim
+          - wget
 
 - name: Run geerlingguy.ntp
   include_role:
-    name: geerlingguy.ntp
+      name: geerlingguy.ntp
 
 - name: Set docker username
   set_fact:
-    docker_users: ["{{ username }}"]
+      docker_users: ["{{ username }}"]
 
 - name: Run geerlingguy.docker
   include_role:
-    name: geerlingguy.docker
+      name: geerlingguy.docker
 
 - name: Check if rust installed
   stat:
-    path: "{{ lookup('env', 'HOME') }}/.local/share/cargo/bin/rustup"
+      path: "{{ lookup('env', 'HOME') }}/.local/share/cargo/bin/rustup"
   register: stat_result
 
 - name: Install rust
   become: "{{ username }}"
   shell: |
-    set -o pipefail
-    curl https://sh.rustup.rs -sSf | sh -s -- --profile minimal --no-modify-path -y
+      set -o pipefail
+      curl https://sh.rustup.rs -sSf | sh -s -- --profile minimal --no-modify-path -y
   when: not stat_result.stat.exists
