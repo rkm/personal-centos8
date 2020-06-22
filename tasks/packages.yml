@@ -15,6 +15,7 @@
 - name: Install dnf packages
   package:
       name:
+          - bash-completion
           - bind-utils
           - bzip2
           - clang

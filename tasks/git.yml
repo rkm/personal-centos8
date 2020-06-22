@@ -25,3 +25,10 @@
       name: geerlingguy.git
   when:
       - require_git_install | default(false)
+
+- name: Ensure git-completion.bash is at the right version
+  get_url:
+      url: https://raw.githubusercontent.com/git/git/v{{ git_version }}/contrib/completion/git-completion.bash
+      dest: /etc/bash_completion.d/git
+      mode: 0644
+      backup: true
