@@ -6,7 +6,7 @@
       mode: 0660
       backup: true
 
-- name: Creates an entry like "@reboot /some/job.sh"
+- name: Ensure a cron entry for ansible_pull_cron exist
   become: "{{ username }}"
   cron:
       name: "runs ansible-pull on reboot"
