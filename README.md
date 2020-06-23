@@ -39,3 +39,4 @@ See `vars/main.yml` for configurable settings. You should at least change the `u
 -   `rustup component add rustfmt --toolchain stable-x86_64-unknown-linux-gnu`
 -   Add a private list of repos to fetch
 -   add dotnet-sdk install to correct version
+-   Investigate running some tasks in parallel / with [async](https://devops.stackexchange.com/questions/3860/is-there-a-way-to-run-with-items-loops-in-parallel-in-ansible)
