@@ -39,4 +39,4 @@ See `vars/main.yml` for configurable settings. You should at least change the `u
 -   `rustup component add rustfmt --toolchain stable-x86_64-unknown-linux-gnu`
 -   Add a private list of repos to fetch
 -   Add a task to run fetch_all on boot
--   git install from source task does not include the bash completion file
+-   add dotnet-sdk install to correct version
