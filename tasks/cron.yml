@@ -1,0 +1,14 @@
+---
+- name: Copy ansible cron script
+  copy:
+      src: "ansible_pull_cron"
+      dest: "{{ lookup('env', 'HOME') }}/.local/bin/ansible_pull_cron"
+      mode: 0660
+      backup: true
+
+- name: Creates an entry like "@reboot /some/job.sh"
+  become: "{{ username }}"
+  cron:
+      name: "runs ansible-pull on reboot"
+      special_time: reboot
+      job: "{{ lookup('env', 'HOME') }}/.local/bin/ansible_pull_cron"

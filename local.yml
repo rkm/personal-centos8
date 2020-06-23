@@ -19,5 +19,6 @@
         tags: ["repos"]
       - include: tasks/go.yml
         tags: ["go"]
+      - include: tasks/cron.yml
       - include: tasks/cleanup.yml
         tags: ["always"]

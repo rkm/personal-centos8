@@ -1,0 +1,3 @@
+#!/bin/bash
+. ~/.profile
+IS_BOOT=1 ansible-pull -U https://github.com/rkm/personal-centos8 &> ~/.au.cron.log
