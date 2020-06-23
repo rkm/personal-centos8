@@ -3,7 +3,7 @@
   copy:
       src: "ansible_pull_cron"
       dest: "{{ lookup('env', 'HOME') }}/.local/bin/ansible_pull_cron"
-      mode: 0660
+      mode: 0770
       backup: true
 
 - name: Ensure a cron entry for ansible_pull_cron exist
