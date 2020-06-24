@@ -34,13 +34,16 @@ def main() -> int:
     for repo in repos:
         try:
             subprocess.run(
-                f"git -C {repo} fetch --all --prune --quiet",
+                f"git -C {repo} fetch --all --prune",
                 shell=True,
                 check=True,
-                stderr=subprocess.DEVNULL,
+                stderr=subprocess.PIPE,
             )
-        except subprocess.CalledProcessError:
-            logging.exception("failed to fetch - repo/fork may have been deleted")
+        except subprocess.CalledProcessError as exc:
+            logging.exception(
+                "failed to fetch - repo/fork may have been deleted "
+                f"({exc.stderr.decode()[:-1]})"
+            )
             return 1
 
     return 0
