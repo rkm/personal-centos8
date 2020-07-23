@@ -30,15 +30,20 @@
           - kernel-headers
           - llvm
           - llvm-devel
+          - mlocate
+          - ncdu
           - net-tools
           - nmap
+          - openmpi-devel
           - perl
+          - python38-devel
           - rsync
           - screen
           - strace
           - telnet
           - traceroute
           - tree
+          - units
           - usbutils
           - vim
           - wget
