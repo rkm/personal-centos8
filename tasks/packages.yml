@@ -24,6 +24,7 @@
           - dkms
           - gcc
           - gdb
+          - graphviz
           - htop
           - jq
           - kernel-devel

@@ -44,3 +44,6 @@ See `vars/main.yml` for configurable settings. You should at least change the `u
 -   git-lfs (from source?)
 -   docker service override conf
 -   mongodb client only
+-   python38 + 36 (36 required for ansible)
+-   docker cred store
+-   mk_venv
