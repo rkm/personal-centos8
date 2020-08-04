@@ -5,6 +5,9 @@
   tasks:
       - include: tasks/setup.yml
         tags: ["always"]
+      - include: tasks/chronyd.yml
+        tags: ["always"]
+        become: true
       - include: tasks/networking.yml
         become: true
       - include: tasks/packages.yml
