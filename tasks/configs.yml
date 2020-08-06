@@ -39,14 +39,14 @@
 - name: Create combined .gitconfig
   shell: >
       cat
-      "{{ tempdir.path }}/{{ archive_contents.files[0] }}/common/.gitconfig"
-      "{{ tempdir.path }}/{{ archive_contents.files[0] }}/linux/.gitconfig"
-      > "{{ tempdir.path }}/.gitconfig"
+      "{{ tempdir.path }}/{{ archive_contents.files[0] }}/common/gitconfig"
+      "{{ tempdir.path }}/{{ archive_contents.files[0] }}/linux/gitconfig"
+      > "{{ tempdir.path }}/gitconfig"
   changed_when: false # Will always be changed
 
-- name: Copy combined .gitconfig
+- name: Copy combined gitconfig
   copy:
-      src: "{{ tempdir.path }}/.gitconfig"
+      src: "{{ tempdir.path }}/gitconfig"
       remote_src: true
       dest: "{{ lookup('env', 'HOME') }}/.config/git/config"
       mode: 0660
@@ -60,8 +60,8 @@
       mode: 0660
       backup: true
   with_items:
-      - { src: ".inputrc", dest: "inputrc" }
-      - { src: ".vimrc", dest: "vim/vimrc" }
+      - { src: "inputrc", dest: "inputrc" }
+      - { src: "vimrc", dest: "vim/vimrc" }
       - { src: "maven/settings.xml", dest: "maven/settings.xml" }
 
 - name: Copy scripts
@@ -77,21 +77,21 @@
 - name: Copy bash dotfiles
   copy:
       src: "{{ tempdir.path }}/{{ archive_contents.files[0] }}/linux/{{ item }}"
-      dest: /home/{{ username }}/{{ item }}
+      dest: /home/{{ username }}/.{{ item }}
       mode: 0660
       remote_src: true
       backup: true
   with_items:
-      - .bashrc
-      - .bash_aliases
-      - .bash_aliases_azure
-      - .profile
+      - bash_aliases
+      - bash_aliases_azure
+      - bash_login
+      - bashrc
+      - profile
 
 # NOTE(rkm 2020-04-24) Ensures that .profile is always executed
-- name: Remove .bash_profile and .bash_login
+- name: Remove .bash_profile
   file:
       path: "{{ lookup('env', 'HOME') }}/{{ item }}"
       state: absent
   with_items:
       - ".bash_profile"
-      - ".bash_login"
