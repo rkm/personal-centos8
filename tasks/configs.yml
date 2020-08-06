@@ -64,6 +64,16 @@
       - { src: ".vimrc", dest: "vim/vimrc" }
       - { src: "maven/settings.xml", dest: "maven/settings.xml" }
 
+- name: Copy scripts
+  copy:
+      src: "{{ item }}"
+      dest: /home/{{ username }}/.local/bin
+      mode: 0770
+      remote_src: true
+      backup: true
+  with_fileglob:
+      - "{{ tempdir.path }}/{{ archive_contents.files[0] }}/linux/bin/*"
+
 - name: Copy bash dotfiles
   copy:
       src: "{{ tempdir.path }}/{{ archive_contents.files[0] }}/linux/{{ item }}"
