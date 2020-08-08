@@ -31,8 +31,9 @@ See `vars/main.yml` for configurable settings. You should at least change the `u
 
 ## TODO
 
+-   Split on boot / login tasks
+-   Clone forks to respective org dirs
 -   Add a "no root" / shared system mode
--   Add packages for building rpms
 -   add maven
 -   use alternatives instead of setting symlinks manually
 -   `rustup update` -> "installing" in stdout
@@ -47,3 +48,6 @@ See `vars/main.yml` for configurable settings. You should at least change the `u
 -   python38 + 36 (36 required for ansible)
 -   docker cred store
 -   mk_venv
+-   az cli
+-   tmux over screen
+-   dotnet sdk from init script (+ libicu)
