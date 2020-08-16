@@ -1,29 +1,46 @@
 ---
+# TODO(rkm 2020-08-16) Convert these to roles: "boot" and "login"
+
 - hosts: localhost
   vars_files:
       - vars/main.yml
   tasks:
       - include: tasks/setup.yml
-        tags: ["always"]
+        tags: [always]
+
       - include: tasks/chronyd.yml
-        tags: ["always"]
         become: true
+        tags: [always]
+
       - include: tasks/networking.yml
         become: true
+        tags: [never, boot]
+
       - include: tasks/packages.yml
         become: true
-        tags: ["packages"]
+        tags: [never, boot, packages]
+
       - include: tasks/configs.yml
-        tags: ["configs"]
+        tags: [never, boot, user]
+
       - include: tasks/users.yml
+        tags: [never, boot]
+
       - include: tasks/git.yml
         become: true
+        tags: [never, boot]
+
       - include: tasks/repos.yml
-        tags: ["repos"]
+        tags: [never, user]
+
       - include: tasks/go.yml
-        tags: ["go"]
+        tags: [never, boot]
+
       - include: tasks/podman.yml
-        tags: ["podman"]
+        tags: [never, boot]
+
       - include: tasks/cron.yml
+        tags: [never, boot]
+
       - include: tasks/cleanup.yml
-        tags: ["always"]
+        tags: [always]
