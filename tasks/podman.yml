@@ -1,9 +1,4 @@
 ---
-# TODO:
-#   crun
-#   configs for rootless
-#   symlink podman to docker in PATH before actual docker
-
 - name: register installed package versions
   package_facts:
       manager: auto
@@ -27,9 +22,3 @@
 - name: install crun
   include_tasks: crun_install.yml
   when: crun_version not in crun_check.stdout
-
-- name: alias docker to podman
-  file:
-      src: /usr/bin/podman
-      dest: /home/{{ username }}/.local/bin/docker
-      state: link
