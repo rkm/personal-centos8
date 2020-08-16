@@ -1,0 +1,37 @@
+---
+# check if virtualenv in .local/lib
+
+- name: Set the venv path fact
+  set_fact:
+      venv_path: /home/{{ username }}/.local/lib/venv
+
+- name: Check if virtualenv installed
+  stat:
+      path: "{{ venv_path }}"
+  register: venv_stat
+
+- name: Grab virtualenv.pyz
+  get_url:
+      url: https://bootstrap.pypa.io/virtualenv.pyz
+      dest: "{{ tempdir.path }}/virtualenv.pyz"
+  changed_when: false # Will always be changed
+  when: not venv_stat.stat.exists
+
+- name: Create the base venv
+  command: python3.8 {{ tempdir.path }}/virtualenv.pyz {{ venv_path }}
+  when: not venv_stat.stat.exists
+
+- name: Install virtualenv to the venv
+  pip:
+      name: virtualenv
+
+      executable: "{{ venv_path }}/bin/pip"
+
+- name: Symlink venv files to .local/bin
+  file:
+      src: "{{ venv_path }}/bin/{{ item }}"
+      dest: /home/{{ username }}/.local/bin/{{ item }}
+      state: link
+  with_items:
+      - pip
+      - virtualenv

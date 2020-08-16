@@ -1,6 +1,4 @@
 ---
-# TODO: python then pip - virtualenv pre-commit
-
 - name: Ensure /opt/bin exists
   file:
       path: /opt/bin

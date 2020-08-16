@@ -30,6 +30,9 @@
         become: true
         tags: [never, boot]
 
+      - include: tasks/python.yml
+        tags: [never, user, python]
+
       - include: tasks/repos.yml
         tags: [never, user]
 
