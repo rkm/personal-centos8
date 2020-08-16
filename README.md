@@ -51,3 +51,4 @@ See `vars/main.yml` for configurable settings. You should at least change the `u
 -   az cli
 -   tmux over screen
 -   dotnet sdk from init script (+ libicu)
+-   terraform
