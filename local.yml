@@ -23,7 +23,7 @@
       - include: tasks/configs.yml
         tags: [never, boot, user]
 
-      - include: tasks/users.yml
+      - include: tasks/sudoers.yml
         tags: [never, boot]
 
       - include: tasks/git.yml
