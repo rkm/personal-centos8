@@ -7,6 +7,7 @@ username: rkm
 #  - 3.8.2
 
 podman_version: 2.0.4
+crun_version: 0.14.1
 
 # geerlingguy.ntp
 ntp_timezone: Etc/UTC

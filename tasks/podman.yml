@@ -16,3 +16,16 @@
 - name: build & install podman
   include_tasks: podman_build.yml
   when: podman_require_install
+
+- name: check crun version
+  shell: |
+      /home/{{ username }}/.local/bin/crun --version
+  register: crun_check
+  changed_when: false
+  failed_when: false
+  tags: ["crun"]
+
+- name: install crun
+  include_tasks: crun_install.yml
+  when: crun_version not in crun_check.stdout
+  tags: ["crun"]

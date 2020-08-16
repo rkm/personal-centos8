@@ -5,6 +5,7 @@
       state: directory
   with_items:
       - .config
+      - .config/containers
       # NOTE(rkm 2020-08-16) Still required for login config
       - .config/docker
       - .config/git
@@ -62,8 +63,9 @@
       backup: true
   with_items:
       - { src: "inputrc", dest: "inputrc" }
-      - { src: "vimrc", dest: "vim/vimrc" }
+      - { src: "libpod.conf", dest: "containers/libpod.conf" }
       - { src: "maven/settings.xml", dest: "maven/settings.xml" }
+      - { src: "vimrc", dest: "vim/vimrc" }
 
 - name: Copy scripts
   copy:
