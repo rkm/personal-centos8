@@ -21,26 +21,26 @@
         tags: [never, boot, packages]
 
       - include: tasks/configs.yml
-        tags: [never, boot, user]
+        tags: [never, boot, user, configs]
 
       - include: tasks/sudoers.yml
         tags: [never, boot]
 
       - include: tasks/git.yml
         become: true
-        tags: [never, boot]
+        tags: [never, boot, git]
 
       - include: tasks/python.yml
         tags: [never, user, python]
 
       - include: tasks/repos.yml
-        tags: [never, user]
+        tags: [never, user, repos]
 
       - include: tasks/go.yml
-        tags: [never, boot]
+        tags: [never, boot, go]
 
       - include: tasks/podman.yml
-        tags: [never, boot]
+        tags: [never, boot, podman]
 
       - include: tasks/cron.yml
         tags: [never, boot]
