@@ -1,0 +1,18 @@
+---
+# TODO:
+#   crun
+#   configs for rootless
+#   symlink podman to docker in PATH before actual docker
+
+- name: register installed package versions
+  package_facts:
+      manager: auto
+
+- name: determine if podman needs to be installed
+  set_fact:
+      # Multiple versions?
+      podman_require_install: "{{ 'podman' not in ansible_facts.packages or ansible_facts.packages['podman'][0].version != podman_version }}"
+
+- name: build & install podman
+  include_tasks: podman_build.yml
+  when: podman_require_install

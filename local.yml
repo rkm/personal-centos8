@@ -22,6 +22,8 @@
         tags: ["repos"]
       - include: tasks/go.yml
         tags: ["go"]
+      - include: tasks/podman.yml
+        tags: ["podman"]
       - include: tasks/cron.yml
       - include: tasks/cleanup.yml
         tags: ["always"]

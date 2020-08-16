@@ -1,0 +1,37 @@
+
+FROM centos:8
+
+RUN : \
+    && dnf -y update \
+    && dnf \
+        --enablerepo=PowerTools \
+        install -y \
+            device-mapper-devel \
+            git \
+            glibc-static \
+            go-compilers-golang-compiler \
+            gpgme-devel \
+            libassuan-devel \
+            make \
+            sudo \
+    && :
+
+WORKDIR /build
+
+RUN : \
+    && git clone \
+        --depth=1 \
+        --branch v{{ podman_version }} \
+        https://github.com/containers/podman.git \
+    && cd podman \
+    && make package \
+    && cp \
+        /root/rpmbuild/RPMS/x86_64/podman-{{ podman_version }}*.rpm \
+        /tmp/podman-{{ podman_version }}.rpm \
+    && :
+
+CMD : \
+    && cp \
+        /tmp/podman-{{ podman_version }}.rpm \
+        /vol \
+    && :
