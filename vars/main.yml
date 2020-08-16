@@ -2,9 +2,12 @@
 # Set this to your $USER
 username: rkm
 
-#python_versions:
-#  - 3.7.7
-#  - 3.8.2
+python_libs:
+    - pip
+    - pre-commit
+    - tox
+    - twine
+    - virtualenv
 
 podman_version: 2.0.4
 crun_version: 0.14.1

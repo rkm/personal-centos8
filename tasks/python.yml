@@ -1,6 +1,4 @@
 ---
-# check if virtualenv in .local/lib
-
 - name: Set the venv path fact
   set_fact:
       venv_path: /home/{{ username }}/.local/lib/venv
@@ -21,17 +19,14 @@
   command: python3.8 {{ tempdir.path }}/virtualenv.pyz {{ venv_path }}
   when: not venv_stat.stat.exists
 
-- name: Install virtualenv to the venv
+- name: Install python tools
   pip:
-      name: virtualenv
-
+      name: "{{ python_libs }}"
       executable: "{{ venv_path }}/bin/pip"
 
-- name: Symlink venv files to .local/bin
+- name: Symlink python libs to .local/bin
   file:
       src: "{{ venv_path }}/bin/{{ item }}"
       dest: /home/{{ username }}/.local/bin/{{ item }}
       state: link
-  with_items:
-      - pip
-      - virtualenv
+  with_items: "{{ python_libs }}"
