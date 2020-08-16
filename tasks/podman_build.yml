@@ -3,6 +3,7 @@
   template:
       src: templates/podman.Dockerfile.j2
       dest: "{{ tempdir.path }}/podman.Dockerfile"
+  changed_when: false
 
 - name: build the podman builder image
   docker_image:
@@ -28,3 +29,15 @@
   package:
       name: "{{ tempdir.path }}/podman-{{ podman_version }}.rpm"
       state: present
+
+- name: remove the podman container
+  docker_container:
+      name: ansible_podman_builder
+      state: absent
+      force_kill: true
+
+- name: remove the podman image
+  docker_image:
+      name: ansible_podman_builder
+      state: absent
+      force_absent: true
