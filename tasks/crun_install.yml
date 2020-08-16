@@ -4,7 +4,6 @@
       url: https://github.com/alvistack/crun/releases/download/0.14.1/crun-{{ crun_version }}-linux-amd64
       dest: /home/{{ username }}/.local/bin/crun-{{ crun_version }}
       mode: "0770"
-  tags: ["crun"]
 
 - name: Symlink crun
   file:
@@ -12,4 +11,3 @@
       dest: /home/{{ username }}/.local/bin/crun
       state: link
       mode: "0770"
-  tags: ["crun"]

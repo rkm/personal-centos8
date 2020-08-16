@@ -23,9 +23,13 @@
   register: crun_check
   changed_when: false
   failed_when: false
-  tags: ["crun"]
 
 - name: install crun
   include_tasks: crun_install.yml
   when: crun_version not in crun_check.stdout
-  tags: ["crun"]
+
+- name: alias docker to podman
+  file:
+      src: /usr/bin/podman
+      dest: /home/{{ username }}/.local/bin/docker
+      state: link
