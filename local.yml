@@ -31,7 +31,7 @@
         tags: [never, boot, git]
 
       - include: tasks/python.yml
-        tags: [never, user, python]
+        tags: [never, boot, python]
 
       - include: tasks/repos.yml
         tags: [never, user, repos]

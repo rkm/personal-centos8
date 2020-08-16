@@ -30,3 +30,8 @@
       dest: /home/{{ username }}/.local/bin/{{ item }}
       state: link
   with_items: "{{ python_libs }}"
+# NOTE(rkm 2020-08-17) Could do this, but it's slow and will run regularly anyway
+# - name: Upgrade virtualenv embed wheels
+#   command: "{{ venv_path }}/bin/virtualenv --upgrade-embed-wheels"
+#   register: result
+#   changed_when: result.rc != 0
