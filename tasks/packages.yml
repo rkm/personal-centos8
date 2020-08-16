@@ -40,9 +40,9 @@
           - python36-devel
           - python38-devel
           - rsync
-          - screen
           - strace
           - telnet
+          - tmux
           - traceroute
           - tree
           - units
