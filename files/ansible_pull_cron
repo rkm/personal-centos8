@@ -1,3 +1,12 @@
 #!/bin/bash
+
+# https://www.putorius.net/lock-files-bash-scripts.html
+if { set -C; 2>/dev/null >~/.au.lock; }; then
+    trap "rm -f ~/.au.lock" EXIT
+else
+    echo "Lock file exists - exiting"
+    exit
+fi
+
 . ~/.profile
 ansible-pull -U https://github.com/rkm/personal-centos8 --tags boot &> ~/.au.boot.log
