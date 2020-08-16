@@ -5,6 +5,12 @@
       dest: "{{ tempdir.path }}/podman.Dockerfile"
   changed_when: false
 
+- name: ensure pip docker is installed
+  pip:
+      name: docker
+      extra_args: --user
+      executable: pip3.6
+
 - name: build the podman builder image
   docker_image:
       build:
