@@ -31,7 +31,6 @@ See `vars/main.yml` for configurable settings. You should at least change the `u
 
 ## TODO
 
--   Split on boot / login tasks
 -   Clone forks to respective org dirs
 -   Add a "no root" / shared system mode
 -   add maven
@@ -41,13 +40,11 @@ See `vars/main.yml` for configurable settings. You should at least change the `u
 -   Add a private list of repos to fetch
 -   add dotnet-sdk install to correct version
 -   Investigate running some tasks in parallel / with [async](https://devops.stackexchange.com/questions/3860/is-there-a-way-to-run-with-items-loops-in-parallel-in-ansible)
--   Fix cron not having ssh key for git pulls on boot
 -   git-lfs (from source?)
 -   mongodb client only
--   python38 + 36 (36 required for ansible)
--   docker cred store
 -   mk_venv
 -   az cli
 -   tmux over screen
 -   dotnet sdk from init script (+ libicu)
 -   terraform
+-   need to remove registry.redhat.io from the podman install
