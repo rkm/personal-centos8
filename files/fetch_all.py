@@ -12,13 +12,13 @@ from pathlib import Path
 
 def main() -> int:
 
-    logging.basicConfig(format="%(levelname)-8s %(message)s",)
+    logging.basicConfig(format="%(levelname)-8s %(message)s")
 
     parser = ArgumentParser()
     parser.add_argument("root", help="The root directory to find repos under")
     args = parser.parse_args()
     root = Path(args.root)
-    assert root.is_dir()
+    assert root.is_dir(), f"expected '{root}' to be a directory"
 
     git_dirs = subprocess.run(
         f"find {root} -type d -name .git",
@@ -42,7 +42,7 @@ def main() -> int:
         except subprocess.CalledProcessError as exc:
             logging.exception(
                 "failed to fetch - repo/fork may have been deleted "
-                f"({exc.stderr.decode()[:-1]})"
+                f"({exc.stderr.decode()[:-1]})",
             )
             return 1
 
