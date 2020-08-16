@@ -37,6 +37,7 @@
           - nmap
           - openmpi-devel
           - perl
+          - python36-devel
           - python38-devel
           - rsync
           - screen
