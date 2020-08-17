@@ -4,6 +4,7 @@ username: rkm
 
 python_libs:
     - pip
+    - pipdeptree
     - pre-commit
     - tox
     - twine
