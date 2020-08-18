@@ -9,4 +9,5 @@ else
 fi
 
 . ~/.profile
+rm ~/.au.boot.log
 ansible-pull -U https://github.com/rkm/personal-centos8 --tags boot &> ~/.au.boot.log
