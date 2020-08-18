@@ -49,3 +49,4 @@ See `vars/main.yml` for configurable settings. You should at least change the `u
 -   need to remove registry.redhat.io from the podman install
 -   Replace azure aliases with tf scripts
 -   rename "user" tags to "login" and remove default tag from au command and move to bash_login
+-   Add a "find .git / pre-commit autoupdate script", disabled by default
