@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -euxo pipefail
+
+# https://www.putorius.net/lock-files-bash-scripts.html
+if { set -C; 2>/dev/null >~/.au.lock; }; then
+    trap "rm -f ~/.au.lock" EXIT
+else
+    echo "Lock file exists - exiting"
+    exit
+fi
+
+if [ $(grep -q 'release 7' /etc/redhat-release) ]; then
+    ansible-pull -U https://github.com/rkm/personal-centos7-ansible "$@" | tee ~/.au.log;
+else
+    ansible-pull -U https://github.com/rkm/personal-centos8 "$@" | tee ~/.au.log;
+fi
