@@ -21,7 +21,7 @@
         tags: [never, boot, packages]
 
       - include: tasks/configs.yml
-        tags: [never, boot, user, configs]
+        tags: [never, boot, login, configs]
 
       - include: tasks/sudoers.yml
         tags: [never, boot]
@@ -34,7 +34,7 @@
         tags: [never, boot, python]
 
       - include: tasks/repos.yml
-        tags: [never, user, repos]
+        tags: [never, login, repos]
 
       - include: tasks/dotnet.yml
         tags: [never, boot, dotnet]

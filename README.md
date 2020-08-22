@@ -41,11 +41,10 @@ See `vars/main.yml` for configurable settings. You should at least change the `u
 -   git-lfs (from source?)
 -   mongodb client only
 -   mk_venv
--   az cli
 -   dotnet sdk from init script (+ libicu)
 -   terraform
 -   need to remove registry.redhat.io from the podman install
 -   Replace azure aliases with tf scripts
--   rename "user" tags to "login" and remove default tag from au command and move to bash_login
 -   Add a "find .git / pre-commit autoupdate script", disabled by default
 -   Remove old dotnet sdks/runtimes
+-   Warn on login with no ssh keys
