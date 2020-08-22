@@ -36,6 +36,9 @@
       - include: tasks/repos.yml
         tags: [never, user, repos]
 
+      - include: tasks/dotnet.yml
+        tags: [never, boot, dotnet]
+
       - include: tasks/go.yml
         tags: [never, boot, go]
 

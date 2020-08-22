@@ -13,6 +13,8 @@ python_libs:
 podman_version: 2.0.4
 crun_version: 0.14.1
 
+dotnet_sdk_version: 3.1.401
+
 # geerlingguy.ntp
 ntp_timezone: Etc/UTC
 ntp_tinker_panic: true

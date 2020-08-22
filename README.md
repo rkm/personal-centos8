@@ -31,14 +31,12 @@ See `vars/main.yml` for configurable settings. You should at least change the `u
 
 ## TODO
 
--   Clone forks to respective org dirs
 -   Add a "no root" / shared system mode
 -   add maven
 -   use alternatives instead of setting symlinks manually
 -   `rustup update` -> "installing" in stdout
 -   `rustup component add rustfmt --toolchain stable-x86_64-unknown-linux-gnu`
 -   Add a private list of repos to fetch
--   add dotnet-sdk install to correct version
 -   Investigate running some tasks in parallel / with [async](https://devops.stackexchange.com/questions/3860/is-there-a-way-to-run-with-items-loops-in-parallel-in-ansible)
 -   git-lfs (from source?)
 -   mongodb client only
@@ -50,3 +48,4 @@ See `vars/main.yml` for configurable settings. You should at least change the `u
 -   Replace azure aliases with tf scripts
 -   rename "user" tags to "login" and remove default tag from au command and move to bash_login
 -   Add a "find .git / pre-commit autoupdate script", disabled by default
+-   Remove old dotnet sdks/runtimes

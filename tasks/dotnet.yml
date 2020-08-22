@@ -1,0 +1,27 @@
+---
+- name: Check current version
+  shell: "dotnet --version"
+  failed_when: false
+  register: dotnet_result
+
+- name: Set dotnet install fact
+  set_fact:
+      dotnet_need_install: "{{ dotnet_result.rc != 0 or dotnet_sdk_version not in dotnet_result.stdout }}"
+
+- name: Download the dotnet install script
+  get_url:
+      url: https://dot.net/v1/dotnet-install.sh
+      dest: "{{ tempdir.path }}"
+      mode: "0770"
+      checksum: "sha256:cca1af4d740b9c3bb9db666f34e2870f6ae4c422922657525ce1166d0800bbca"
+  when: dotnet_need_install
+
+- name: Install dotnet
+  shell: "{{ tempdir.path }}/dotnet-install.sh --version {{ dotnet_sdk_version }} --install-dir {{ lookup('env', 'HOME') }}/.local/lib/dotnet"
+  when: dotnet_need_install
+
+- name: Create symlink to dotnet
+  file:
+      src: "{{ lookup('env', 'HOME') }}/.local/lib/dotnet/dotnet"
+      dest: "{{ lookup('env', 'HOME') }}/.local/bin/dotnet"
+      state: link
