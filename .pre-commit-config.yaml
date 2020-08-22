@@ -90,7 +90,7 @@ repos:
             args: [--config, .meta/flake8.conf]
       # Ansible
     - repo: https://github.com/ansible/ansible-lint.git
-      rev: v4.3.0a6
+      rev: v4.3.1
       hooks:
           - id: ansible-lint
             files: \.(yaml|yml)$
