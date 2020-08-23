@@ -21,17 +21,17 @@ ntp_tinker_panic: true
 
 # geerlingguy.docker
 docker_service_enabled: false
-docker_compose_version: "1.25.5"
+docker_compose_version: "1.26.2"
 docker_compose_path: /opt/bin/docker-compose
 
 # geerlingguy.git
-git_version: 2.26.2
+git_version: 2.28.0
 git_install_from_source: true
 git_install_from_source_force_update: true
 git_install_path: "/opt"
 
 # gantsign.golang
-golang_version: "1.14.2"
+golang_version: "1.15"
 golang_install_dir: /opt/go/{{ golang_version }}
 
 # GitHub repos
