@@ -52,6 +52,7 @@
   shell: |
       : \
       && set -euxo pipefail \
+      && find {{ lookup('env', 'HOME') }}/dev -type f -regextype egrep -regex '.*/\.?pre-commit-config(-base)?\.yaml' \
       && find ~/dev -type f -name .pre-commit-config.yaml \
        | xargs -l -I{} pre-commit autoupdate --config {}
   register: result
