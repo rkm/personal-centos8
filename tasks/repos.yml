@@ -34,10 +34,11 @@
 # NOTE(rkm 2020-05-02) Uses the prune tags git alias
 - name: Prune tags
   shell: |
-      set -o pipefail
-      find {{ lookup('env', 'HOME') }}/dev -type f -name .git |
-      xargs dirname |
-      xargs -l -I{} git -C {} pt
+      : \
+      && set -exuo pipefail \
+      && find {{ lookup('env', 'HOME') }}/dev -type f -name .git \
+       | xargs dirname \
+       | xargs -l -I{} git -C {} pt
   register: fetch_result
   changed_when: fetch_result.rc != 0
 
@@ -46,3 +47,11 @@
       src: "{{ lookup('env', 'HOME') }}/dev/alan-turing-institute"
       dest: "{{ lookup('env', 'HOME') }}/dev/ati"
       state: link
+
+- name: pre-commit autoupdate
+  shell: |
+      : \
+      && set -euxo pipefail \
+      && find ~/dev -type f -name .pre-commit-config.yaml \
+       | xargs -l -I{} pre-commit autoupdate --config {}
+  tags: [none, precommit]
