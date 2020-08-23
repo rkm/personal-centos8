@@ -54,4 +54,6 @@
       && set -euxo pipefail \
       && find ~/dev -type f -name .pre-commit-config.yaml \
        | xargs -l -I{} pre-commit autoupdate --config {}
+  register: result
+  changed_when: '"->" in result.stdout'
   tags: [none, precommit]
