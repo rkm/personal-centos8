@@ -17,3 +17,4 @@
   with_items:
       - github.com/tomnomnom/gron
   changed_when: false
+  when: false # NOTE(rkm 2020-08-24) Seems to be broken after go 1.15
