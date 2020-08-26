@@ -20,6 +20,7 @@
           - clang-devel
           - curl
           - dkms
+          - dos2unix
           - gcc
           - gdb
           - graphviz
