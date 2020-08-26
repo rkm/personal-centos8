@@ -36,7 +36,7 @@ repos:
           - id: codespell
             args: [--ignore-words, .meta/codespell-ignores]
     - repo: https://github.com/prettier/prettier
-      rev: "2.0.5"
+      rev: "2.1.0"
       hooks:
           - id: prettier
             args: [--config, .meta/prettierrc.json]
