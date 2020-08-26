@@ -36,7 +36,7 @@ repos:
           - id: codespell
             args: [--ignore-words, .meta/codespell-ignores]
     - repo: https://github.com/prettier/prettier
-      rev: "2.1.0"
+      rev: "2.1.1"
       hooks:
           - id: prettier
             args: [--config, .meta/prettierrc.json]
@@ -78,7 +78,7 @@ repos:
           - id: mypy
             args: [--config-file, .meta/mypy.ini]
     - repo: https://github.com/psf/black
-      rev: "19.10b0"
+      rev: "20.8b1"
       hooks:
           - id: black
             language_version: python38
@@ -90,7 +90,7 @@ repos:
             args: [--config, .meta/flake8.conf]
       # Ansible
     - repo: https://github.com/ansible/ansible-lint.git
-      rev: v4.3.1
+      rev: v4.3.2
       hooks:
           - id: ansible-lint
             files: \.(yaml|yml)$
