@@ -25,6 +25,7 @@
           - gdb
           - graphviz
           - htop
+          - java-11-openjdk-devel
           - jq
           - kernel-devel
           - kernel-headers

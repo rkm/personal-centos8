@@ -39,6 +39,9 @@
       - include: tasks/dotnet.yml
         tags: [never, boot, dotnet]
 
+      - include: tasks/maven.yml
+        tags: [never, boot, maven]
+
       - include: tasks/go.yml
         tags: [never, boot, go]
 

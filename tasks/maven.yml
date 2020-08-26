@@ -1,0 +1,33 @@
+---
+- name: Check current version
+  shell: "mvn --version"
+  failed_when: false
+  changed_when: false
+  register: mvn_result
+
+- name: Set maven install fact
+  set_fact:
+      maven_need_install: "{{ mvn_result.rc != 0 or maven_version not in mvn_result.stdout_lines[0] }}"
+
+- name: Download maven
+  get_url:
+      url: https://apache.mirrors.nublue.co.uk/maven/maven-3/{{ maven_version }}/binaries/apache-maven-{{ maven_version }}-bin.tar.gz
+      dest: "{{ tempdir.path }}"
+      mode: "0770"
+      checksum: "sha512:{{ maven_sha512 }}"
+  when: maven_need_install
+
+- name: Unarchive maven
+  unarchive:
+      src: "{{ tempdir.path }}/apache-maven-{{ maven_version }}-bin.tar.gz"
+      dest: "{{ lookup('env', 'HOME') }}/opt"
+      remote_src: true
+  changed_when: false # Will always be changed
+  when: maven_need_install
+
+- name: Symlink mvn
+  file:
+      src: "{{ lookup('env', 'HOME') }}/opt/apache-maven-{{ maven_version }}"
+      dest: "{{ lookup('env', 'HOME') }}/opt/maven"
+      state: link
+  when: maven_need_install

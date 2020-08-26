@@ -32,7 +32,6 @@ See `vars/main.yml` for configurable settings. You should at least change the `u
 ## TODO
 
 -   Add a "no root" / shared system mode
--   add maven
 -   use alternatives instead of setting symlinks manually
 -   `rustup update` -> "installing" in stdout
 -   `rustup component add rustfmt --toolchain stable-x86_64-unknown-linux-gnu`
@@ -48,3 +47,4 @@ See `vars/main.yml` for configurable settings. You should at least change the `u
 -   Remove old dotnet sdks/runtimes
 -   Warn on login with no ssh keys
 -   Replace ansible dnf install with release repo
+-   `python -c "import sys; from datetime import datetime; print(datetime.utcfromtimestamp(int(sys.argv[1])))"`
