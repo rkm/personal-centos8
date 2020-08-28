@@ -13,6 +13,7 @@
 - name: Install dnf packages
   package:
       name:
+          - ImageMagick
           - bash-completion
           - bind-utils
           - bzip2
@@ -49,6 +50,7 @@
           - usbutils
           - vim
           - wget
+          - xdg-utils
           - xorg-x11-server-Xorg
           - xorg-x11-xauth
 
