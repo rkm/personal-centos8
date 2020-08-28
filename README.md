@@ -35,16 +35,14 @@ See `vars/main.yml` for configurable settings. You should at least change the `u
 -   use alternatives instead of setting symlinks manually
 -   `rustup update` -> "installing" in stdout
 -   `rustup component add rustfmt --toolchain stable-x86_64-unknown-linux-gnu`
--   Add a private list of repos to fetch
+-   Add a list of private repos to fetch
 -   Investigate running some tasks in parallel / with [async](https://devops.stackexchange.com/questions/3860/is-there-a-way-to-run-with-items-loops-in-parallel-in-ansible)
 -   git-lfs (from source?)
 -   mongodb client only
 -   mk_venv
 -   terraform
--   need to remove registry.redhat.io from the podman install
 -   Replace azure aliases with tf scripts
--   Add a "find .git / pre-commit autoupdate script", disabled by default
--   Remove old dotnet sdks/runtimes
+-   Need to remove old dotnet sdks/runtimes
 -   Warn on login with no ssh keys
 -   Replace ansible dnf install with release repo
 -   `python -c "import sys; from datetime import datetime; print(datetime.utcfromtimestamp(int(sys.argv[1])))"`
