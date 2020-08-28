@@ -43,6 +43,5 @@ See `vars/main.yml` for configurable settings. You should at least change the `u
 -   terraform
 -   Replace azure aliases with tf scripts
 -   Need to remove old dotnet sdks/runtimes
--   Warn on login with no ssh keys
 -   Replace ansible dnf install with release repo
 -   `python -c "import sys; from datetime import datetime; print(datetime.utcfromtimestamp(int(sys.argv[1])))"`
