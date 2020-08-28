@@ -15,7 +15,7 @@ The 3/8 naming seems to happen by default when you add the adapters in VirtualBo
 
 ### Automatic
 
-Drop an SSH key pair onto a new VM, and run:
+Drop an SSH key pair onto a new VM, or use ssh-agent, and run:
 
 ```bash
 > curl -Ls https://raw.githubusercontent.com/rkm/personal-centos8/master/install.sh | bash
