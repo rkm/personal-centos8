@@ -16,6 +16,10 @@
         become: true
         tags: [never, boot]
 
+      - include: tasks/ssh.yml
+        become: true
+        tags: [never, boot, ssh]
+
       - include: tasks/packages.yml
         become: true
         tags: [never, boot, packages]

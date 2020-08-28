@@ -49,6 +49,14 @@
           - usbutils
           - vim
           - wget
+          - xorg-x11-server-Xorg
+          - xorg-x11-xauth
+
+- name: Install dnf packages - PowerTools
+  dnf:
+      enablerepo: PowerTools
+      name:
+          - xorg-x11-apps
 
 - name: Run geerlingguy.ntp
   include_role:
