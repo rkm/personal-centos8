@@ -56,16 +56,11 @@
 
 - name: Copy configs
   copy:
-      src: "{{ tempdir.path }}/{{ archive_contents.files[0] }}/linux/{{ item.src }}"
+      src: "{{ tempdir.path }}/{{ archive_contents.files[0] }}/linux/"
       remote_src: true
-      dest: "{{ lookup('env', 'HOME') }}/.config/{{ item.dest }}"
-      mode: 0660
+      dest: "{{ lookup('env', 'HOME') }}/.config/"
+      mode: 0770
       backup: true
-  with_items:
-      - { src: "inputrc", dest: "inputrc" }
-      - { src: "libpod.conf", dest: "containers/libpod.conf" }
-      - { src: "maven/settings.xml", dest: "maven/settings.xml" }
-      - { src: "vimrc", dest: "vim/vimrc" }
 
 - name: Copy scripts
   copy:
