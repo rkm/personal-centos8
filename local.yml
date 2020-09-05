@@ -52,6 +52,9 @@
       - include: tasks/podman.yml
         tags: [never, boot, podman]
 
+      - include: tasks/tmux.yml
+        tags: [never, boot, tmux]
+
       - include: tasks/cron.yml
         tags: [never, boot]
 

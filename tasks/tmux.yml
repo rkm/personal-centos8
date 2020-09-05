@@ -1,0 +1,62 @@
+---
+- name: ensure package manager tmux not installed
+  become: true
+  package:
+      name: tmux
+      state: absent
+
+- name: get current tmux version if any
+  shell: tmux -V
+  failed_when: false
+  changed_when: false
+  register: tmux_version_check
+
+- name: determine if tmux needs to be installed
+  set_fact:
+      tmux_require_install: "{{ tmux_version_check.rc != 0 or tmux_version not in tmux_version_check.stdout_lines[0] }}"
+
+- name: install tmux dependencies
+  become: true
+  package:
+      name: libevent-devel
+      state: present
+  when: tmux_require_install
+
+- name: download tmux source
+  get_url:
+      url: "https://github.com/tmux/tmux/releases/download/{{ tmux_version }}/tmux-{{ tmux_version }}.tar.gz"
+      dest: "{{ tempdir.path }}"
+  when: tmux_require_install
+
+- name: unpack tmux source
+  unarchive:
+      src: "{{ tempdir.path }}/tmux-{{ tmux_version }}.tar.gz"
+      dest: "{{ tempdir.path }}"
+      remote_src: true
+      list_files: true
+  changed_when: false # Will always be changed
+  when: tmux_require_install
+  register: archive_contents
+
+- name: set tmux build dir
+  set_fact:
+      tmux_build_dir: "{{ tempdir.path }}/tmux-{{ tmux_version }}"
+  when: tmux_require_install
+
+- name: configure tmux
+  command: ./configure --prefix={{ lookup('env', 'HOME') }}/.local
+  args:
+      chdir: "{{ tmux_build_dir }}"
+  when: tmux_require_install
+
+- name: make tmux
+  command: make -j
+  args:
+      chdir: "{{ tmux_build_dir }}"
+  when: tmux_require_install
+
+- name: install tmux
+  command: make install
+  args:
+      chdir: "{{ tmux_build_dir }}"
+  when: tmux_require_install

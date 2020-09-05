@@ -18,6 +18,8 @@ dotnet_sdk_version: 3.1.401
 maven_version: 3.6.3
 maven_sha512: c35a1803a6e70a126e80b2b3ae33eed961f83ed74d18fcd16909b2d44d7dada3203f1ffe726c17ef8dcca2dcaa9fca676987befeadc9b9f759967a8cb77181c0
 
+tmux_version: 3.1b
+
 # geerlingguy.ntp
 ntp_timezone: Etc/UTC
 ntp_tinker_panic: true
