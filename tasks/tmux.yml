@@ -28,20 +28,19 @@
       dest: "{{ tempdir.path }}"
   when: tmux_require_install
 
-- name: unpack tmux source
-  unarchive:
-      src: "{{ tempdir.path }}/tmux-{{ tmux_version }}.tar.gz"
-      dest: "{{ tempdir.path }}"
-      remote_src: true
-      list_files: true
-  changed_when: false # Will always be changed
-  when: tmux_require_install
-  register: archive_contents
-
 - name: set tmux build dir
   set_fact:
       tmux_build_dir: "{{ tempdir.path }}/tmux-{{ tmux_version }}"
   when: tmux_require_install
+
+- name: unpack tmux source
+  unarchive:
+      src: "{{ tmux_build_dir }}.tar.gz"
+      dest: "{{ tempdir.path }}"
+      remote_src: true
+  changed_when: false # Will always be changed
+  when: tmux_require_install
+  register: archive_contents
 
 - name: configure tmux
   command: ./configure --prefix={{ lookup('env', 'HOME') }}/.local
