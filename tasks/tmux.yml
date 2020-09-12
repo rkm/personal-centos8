@@ -18,7 +18,9 @@
 - name: install tmux dependencies
   become: true
   package:
-      name: libevent-devel
+      name:
+          - libevent-devel
+          - ncurses-devel
       state: present
   when: tmux_require_install
 
