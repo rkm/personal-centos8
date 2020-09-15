@@ -39,6 +39,7 @@
           - nmap
           - openmpi-devel
           - perl
+          - perl-Image-ExifTool
           - python36-devel
           - python38-devel
           - rsync
