@@ -10,7 +10,7 @@ python_libs:
     - twine
     - virtualenv
 
-podman_version: 2.0.4
+podman_version: 2.1.0
 crun_version: 0.14.1
 
 dotnet_sdk_version: 3.1.402
