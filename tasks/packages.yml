@@ -75,9 +75,9 @@
   set_fact:
       docker_users: ["{{ username }}"]
 
-- name: Run geerlingguy.docker
+- name: Run rkm.docker
   include_role:
-      name: geerlingguy.docker
+      name: rkm.docker
 
 - name: Check if rust installed
   stat:
