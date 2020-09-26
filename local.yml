@@ -49,9 +49,6 @@
       - include: tasks/go.yml
         tags: [never, boot, go]
 
-      - include: tasks/podman.yml
-        tags: [never, boot, podman]
-
       - include: tasks/tmux.yml
         tags: [never, boot, tmux]
 

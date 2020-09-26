@@ -61,6 +61,12 @@
       name:
           - xorg-x11-apps
 
+- name: remove unused packages
+  package:
+      name:
+          - podman
+      state: absent
+
 - name: Run geerlingguy.ntp
   include_role:
       name: geerlingguy.ntp
