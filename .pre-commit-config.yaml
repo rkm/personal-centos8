@@ -36,7 +36,7 @@ repos:
           - id: codespell
             args: [--ignore-words, .meta/codespell-ignores]
     - repo: https://github.com/prettier/pre-commit
-      rev: v2.1.2
+      rev: 413fd9da8e03249b74acf8543567e5debbad8bfa
       hooks:
           - id: prettier
             args: [--config, .meta/prettierrc.json]
@@ -47,14 +47,14 @@ repos:
             args: [-c, .meta/yamllint.yaml]
       # Python
     - repo: https://github.com/pre-commit/pygrep-hooks
-      rev: v1.6.0
+      rev: v1.7.0
       hooks:
           - id: python-check-blanket-noqa
           - id: python-check-mock-methods
           - id: python-use-type-annotations
           - id: python-no-log-warn
     - repo: https://github.com/asottile/reorder_python_imports
-      rev: v2.3.5
+      rev: v2.3.6
       hooks:
           - id: reorder-python-imports
             args: [--py36-plus]
@@ -64,7 +64,7 @@ repos:
           - id: add-trailing-comma
             args: [--py36-plus]
     - repo: https://github.com/asottile/pyupgrade
-      rev: v2.7.2
+      rev: v2.7.3
       hooks:
           - id: pyupgrade
             args: [--py36-plus]
@@ -90,7 +90,7 @@ repos:
             args: [--config, .meta/flake8.conf]
       # Ansible
     - repo: https://github.com/ansible/ansible-lint.git
-      rev: v4.3.5
+      rev: v4.3.7
       hooks:
           - id: ansible-lint
             files: \.(yaml|yml)$
