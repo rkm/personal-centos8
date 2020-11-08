@@ -44,3 +44,4 @@ See `vars/main.yml` for configurable settings. You should at least change the `u
 -   Replace azure aliases with tf scripts
 -   Need to remove old dotnet sdks/runtimes
 -   Replace ansible dnf install with release repo
+-   Move dev -> workspace (check dotfiles as well)
