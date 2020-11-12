@@ -23,7 +23,7 @@
       url: https://dot.net/v1/dotnet-install.sh
       dest: "{{ tempdir.path }}"
       mode: "0770"
-      checksum: "sha256:cca1af4d740b9c3bb9db666f34e2870f6ae4c422922657525ce1166d0800bbca"
+      checksum: "sha256:3c24b6b3ca3cbf1d9167cff53ae9d5079199f6eed3b5dcf9d6b2bf34cc4dc329"
   when: dotnet_need_install
 
 - name: Install dotnet
