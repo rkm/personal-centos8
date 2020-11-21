@@ -3,6 +3,7 @@
 username: rkm
 
 python_libs:
+    - mypy
     - pip
     - pipdeptree
     - pre-commit
