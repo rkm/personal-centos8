@@ -35,8 +35,8 @@ repos:
       hooks:
           - id: codespell
             args: [--ignore-words, .meta/codespell-ignores]
-    - repo: https://github.com/prettier/pre-commit
-      rev: 413fd9da8e03249b74acf8543567e5debbad8bfa
+    - repo: https://github.com/pre-commit/mirrors-prettier
+      rev: "v2.2.0"
       hooks:
           - id: prettier
             args: [--config, .meta/prettierrc.json]
@@ -64,7 +64,7 @@ repos:
           - id: add-trailing-comma
             args: [--py36-plus]
     - repo: https://github.com/asottile/pyupgrade
-      rev: v2.7.3
+      rev: v2.7.4
       hooks:
           - id: pyupgrade
             args: [--py36-plus]
