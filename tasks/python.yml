@@ -24,6 +24,11 @@
       name: "{{ python_libs }}"
       executable: "{{ venv_path }}/bin/pip"
       extra_args: --upgrade
+  register: pip_install_result
+
+- name: Print tools install if changed
+  debug: msg={{ pip_install_result.stdout }}
+  when: pip_install_result.changed
 
 - name: Symlink python libs to .local/bin
   file:
