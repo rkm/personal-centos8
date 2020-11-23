@@ -46,3 +46,4 @@ See `vars/main.yml` for configurable settings. You should at least change the `u
 -   Move dev -> workspace (check dotfiles as well)
 -   Allow multiple versions of dotnet
 -   Add option to ignore repo from autoupdate scan (due to testing pre-commit stuff)
+-   Add packer & terraform from hashicorp repo
