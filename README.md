@@ -47,3 +47,4 @@ See `vars/main.yml` for configurable settings. You should at least change the `u
 -   Allow multiple versions of dotnet
 -   Add option to ignore repo from autoupdate scan (due to testing pre-commit stuff)
 -   Add packer & terraform from hashicorp repo
+-   Need to add user to vboxsf
