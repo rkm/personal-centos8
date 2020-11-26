@@ -40,6 +40,7 @@
           - openmpi-devel
           - perl
           - perl-Image-ExifTool
+          - psmisc
           - python36-devel
           - python38-devel
           - rsync
