@@ -40,8 +40,6 @@ See `vars/main.yml` for configurable settings. You should at least change the `u
 -   git-lfs (from source?)
 -   mongodb client only
 -   mk_venv
--   terraform
--   Replace azure aliases with tf scripts
 -   Replace ansible dnf install with release repo
 -   Move dev -> workspace (check dotfiles as well)
 -   Allow multiple versions of dotnet
