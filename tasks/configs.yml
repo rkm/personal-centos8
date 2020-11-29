@@ -82,7 +82,6 @@
       backup: true
   with_items:
       - bash_aliases
-      - bash_aliases_azure
       - bash_login
       - bashrc
       - profile
