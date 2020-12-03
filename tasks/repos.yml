@@ -53,8 +53,8 @@
       : \
       && set -euxo pipefail \
       && find {{ lookup('env', 'HOME') }}/dev -type f -regextype egrep -regex '.*/\.?pre-commit-config(-base)?\.yaml' \
-      && find ~/dev -type f -name .pre-commit-config.yaml \
        | xargs -l -I{} pre-commit autoupdate --config {}
   register: result
   changed_when: '"->" in result.stdout'
   tags: [none, precommit]
+  failed_when: false # NOTE(rkm 2020-12-03) Allow this to fail when testing new hooks
