@@ -42,12 +42,6 @@
   register: fetch_result
   changed_when: fetch_result.rc != 0
 
-- name: Symlink alan-turing-institute -> ati
-  file:
-      src: "{{ lookup('env', 'HOME') }}/dev/alan-turing-institute"
-      dest: "{{ lookup('env', 'HOME') }}/dev/ati"
-      state: link
-
 - name: pre-commit autoupdate
   shell: |
       : \
