@@ -2,7 +2,7 @@
 # TODO(rkm 2020-08-23) use allowerasing when we have ansible 2.10
 - name: Install dotnet dependencies
   become: true
-  shell: dnf -y --allowerasing install libcurl libicu zlib
+  shell: dnf -y --allowerasing install libcurl libicu zlib openssl-libs compat-openssl10 krb5-libs
   args:
       warn: false
   register: result
