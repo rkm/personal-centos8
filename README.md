@@ -45,3 +45,4 @@ See `vars/main.yml` for configurable settings. You should at least change the `u
 -   Allow multiple versions of dotnet
 -   Add packer & terraform from hashicorp repo
 -   Need to add user to vboxsf
+-   Check for missing / unused tasks
