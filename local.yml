@@ -52,6 +52,9 @@
       - include: tasks/tmux.yml
         tags: [never, boot, tmux]
 
+      - include: tasks/azure_cli
+        tags: [never, boot, az]
+
       - include: tasks/cron.yml
         tags: [never, boot]
 
