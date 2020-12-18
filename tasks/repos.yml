@@ -26,10 +26,10 @@
       update: false
   with_items: "{{ persistent_repos }}"
 
-- name: Fetch all repos
-  script: fetch_all.py {{ lookup('env', 'HOME') }}/dev
-  register: fetch_result
-  changed_when: fetch_result.rc != 0
+# - name: Fetch all repos
+#   script: fetch_all.py {{ lookup('env', 'HOME') }}/dev
+#   register: fetch_result
+#   changed_when: fetch_result.rc != 0
 
 # NOTE(rkm 2020-05-02) Uses the prune tags git alias
 - name: Prune tags
@@ -41,14 +41,13 @@
        | xargs -l -I{} git -C {} pt
   register: fetch_result
   changed_when: fetch_result.rc != 0
-
-- name: pre-commit autoupdate
-  shell: |
-      : \
-      && set -euxo pipefail \
-      && find {{ lookup('env', 'HOME') }}/dev -type f -regextype egrep -regex '.*/\.?pre-commit-config(-base)?\.yaml' \
-       | xargs -l -I{} pre-commit autoupdate --config {}
-  register: result
-  changed_when: '"->" in result.stdout'
-  tags: [none, precommit]
-  failed_when: false # NOTE(rkm 2020-12-03) Allow this to fail when testing new hooks
+# - name: pre-commit autoupdate
+#   shell: |
+#       : \
+#       && set -euxo pipefail \
+#       && find {{ lookup('env', 'HOME') }}/dev -type f -regextype egrep -regex '.*/\.?pre-commit-config(-base)?\.yaml' \
+#        | xargs -l -I{} pre-commit autoupdate --config {}
+#   register: result
+#   changed_when: '"->" in result.stdout'
+#   tags: [none, precommit]
+#   failed_when: false # NOTE(rkm 2020-12-03) Allow this to fail when testing new hooks
