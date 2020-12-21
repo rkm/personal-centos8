@@ -4,7 +4,7 @@ default_language_version:
 
 repos:
     - repo: https://github.com/pre-commit/pre-commit-hooks
-      rev: v3.3.0
+      rev: v3.4.0
       hooks:
           # General
           - id: check-added-large-files
@@ -94,3 +94,4 @@ repos:
       hooks:
           - id: ansible-lint
             files: \.(yaml|yml)$
+            additional_dependencies: [ansible<2.9]
