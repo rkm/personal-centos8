@@ -3,61 +3,61 @@
 
 - hosts: localhost
   vars_files:
-      - vars/main.yml
+    - vars/main.yml
   tasks:
-      - include: tasks/setup.yml
-        tags: [always]
+    - include: tasks/setup.yml
+      tags: [always]
 
-      - include: tasks/chronyd.yml
-        become: true
-        tags: [always]
+    - include: tasks/chronyd.yml
+      become: true
+      tags: [always]
 
-      - include: tasks/networking.yml
-        become: true
-        tags: [never, boot]
+    - include: tasks/networking.yml
+      become: true
+      tags: [never, boot]
 
-      - include: tasks/ssh.yml
-        become: true
-        tags: [never, boot, ssh]
+    - include: tasks/ssh.yml
+      become: true
+      tags: [never, boot, ssh]
 
-      - include: tasks/packages.yml
-        become: true
-        tags: [never, boot, packages]
+    - include: tasks/packages.yml
+      become: true
+      tags: [never, boot, packages]
 
-      - include: tasks/configs.yml
-        tags: [never, boot, login, configs]
+    - include: tasks/configs.yml
+      tags: [never, boot, login, configs]
 
-      - include: tasks/sudoers.yml
-        tags: [never, boot]
+    - include: tasks/sudoers.yml
+      tags: [never, boot]
 
-      - include: tasks/git.yml
-        become: true
-        tags: [never, boot, git]
+    - include: tasks/git.yml
+      become: true
+      tags: [never, boot, git]
 
-      - include: tasks/python.yml
-        tags: [never, boot, python]
+    - include: tasks/python.yml
+      tags: [never, boot, python]
 
-      - include: tasks/repos.yml
-        tags: [never, login, repos]
+    - include: tasks/repos.yml
+      tags: [never, login, repos]
 
-      - include: tasks/dotnet.yml
-        tags: [never, boot, dotnet]
+    - include: tasks/dotnet.yml
+      tags: [never, boot, dotnet]
 
-      - include: tasks/maven.yml
-        tags: [never, boot, maven]
+    - include: tasks/maven.yml
+      tags: [never, boot, maven]
 
-      - include: tasks/go.yml
-        tags: [never, boot, go]
+    - include: tasks/go.yml
+      tags: [never, boot, go]
 
-      - include: tasks/tmux.yml
-        tags: [never, boot, tmux]
+    - include: tasks/tmux.yml
+      tags: [never, boot, tmux]
 
-      - include: tasks/azure_cli.yml
-        become: true
-        tags: [never, boot, az]
+    - include: tasks/azure_cli.yml
+      become: true
+      tags: [never, boot, az]
 
-      - include: tasks/cron.yml
-        tags: [never, boot]
+    - include: tasks/cron.yml
+      tags: [never, boot]
 
-      - include: tasks/cleanup.yml
-        tags: [always]
+    - include: tasks/cleanup.yml
+      tags: [always]

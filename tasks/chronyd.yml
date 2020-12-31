@@ -1,6 +1,6 @@
 ---
 - name: restart chronyd
   systemd:
-      state: restarted
-      name: chronyd
+    state: restarted
+    name: chronyd
   changed_when: false

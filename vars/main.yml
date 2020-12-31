@@ -3,13 +3,13 @@
 username: rkm
 
 python_libs:
-    - mypy
-    - pip
-    - pipdeptree
-    - pre-commit
-    - tox
-    - twine
-    - virtualenv
+  - mypy
+  - pip
+  - pipdeptree
+  - pre-commit
+  - tox
+  - twine
+  - virtualenv
 
 dotnet_sdk_version: 5.0.100
 
@@ -40,23 +40,23 @@ golang_redis_sha256sum: "2d75848ac606061efe52a8068d0e647b35ce487a15bb52272c427df
 # GitHub repos
 
 github_orgs:
-    - rkm
-    - smi
+  - rkm
+  - smi
 
 persistent_repos:
-    - HicServices/BadMedicine
-    - HicServices/BadMedicine.Dicom
-    - HicServices/DicomTemplateBuilder
-    - HicServices/DicomTypeTranslation
-    - HicServices/FAnsiSql
-    - HicServices/RDMP
-    - HicServices/RDMPDicom
-    - alan-turing-institute/aviary
-    - alan-turing-institute/bluebird
-    - alan-turing-institute/bluesky
-    - alan-turing-institute/DataScienceSkills
-    - alan-turing-institute/dodo
-    - alan-turing-institute/nats
-    - alan-turing-institute/nats-birdhouse
-    - alan-turing-institute/simurgh
-    - alan-turing-institute/twitcher
+  - HicServices/BadMedicine
+  - HicServices/BadMedicine.Dicom
+  - HicServices/DicomTemplateBuilder
+  - HicServices/DicomTypeTranslation
+  - HicServices/FAnsiSql
+  - HicServices/RDMP
+  - HicServices/RDMPDicom
+  - alan-turing-institute/aviary
+  - alan-turing-institute/bluebird
+  - alan-turing-institute/bluesky
+  - alan-turing-institute/DataScienceSkills
+  - alan-turing-institute/dodo
+  - alan-turing-institute/nats
+  - alan-turing-institute/nats-birdhouse
+  - alan-turing-institute/simurgh
+  - alan-turing-institute/twitcher

@@ -4,33 +4,33 @@
 
 - name: Get host zone
   shell: |
-      set -o pipefail
-      firewall-cmd --list-all-zones | grep host
+    set -o pipefail
+    firewall-cmd --list-all-zones | grep host
   args:
-      executable: /bin/bash
+    executable: /bin/bash
   changed_when: false
   failed_when: false
   register: host_zone
 
 - name: Create host zone
   copy:
-      src: files/host.xml
-      dest: /etc/firewalld/zones/host.xml
+    src: files/host.xml
+    dest: /etc/firewalld/zones/host.xml
   register: host_zone
   when: "'host' not in host_zone.stdout"
 
 - name: Ensure masquerade is enabled for public zone
   firewalld:
-      zone: public
-      masquerade: "true"
-      permanent: yes
-      state: enabled
+    zone: public
+    masquerade: "true"
+    permanent: yes
+    state: enabled
   register: public_zone
 
 - name: Reload firewalld # noqa 503
   systemd:
-      name: firewalld
-      state: restarted
+    name: firewalld
+    state: restarted
   when: public_zone.changed | bool or host_zone.changed | bool
 
 - name: Get DNS servers
@@ -45,29 +45,29 @@
 
 - name: Get interface zones
   shell: |
-      set -o pipefail
-      nmcli con show {{ item }} | grep zone
+    set -o pipefail
+    nmcli con show {{ item }} | grep zone
   args:
-      executable: /bin/bash
+    executable: /bin/bash
   register: zone_result
   changed_when: false
   with_items:
-      - enp0s3
-      - enp0s8
+    - enp0s3
+    - enp0s8
 
 - name: Set interface zones
   command: nmcli con mod {{ item.stdout.item }} connection.zone {{ item.zone }}
   when: "item.zone not in item.stdout.stdout"
   register: zone_result
   with_items:
-      - { stdout: "{{ zone_result.results[0] }}", zone: public }
-      - { stdout: "{{ zone_result.results[1] }}", zone: host }
+    - { stdout: "{{ zone_result.results[0] }}", zone: public }
+    - { stdout: "{{ zone_result.results[1] }}", zone: host }
 
 - name: Reload NetworkManager
   systemd:
-      name: NetworkManager
-      state: reloaded
+    name: NetworkManager
+    state: reloaded
   when: >
-      ("1.1.1.1" not in dns_result.stdout) or
-      ( not zone_result.results[0].skipped) or
-      ( not zone_result.results[1].skipped)
+    ("1.1.1.1" not in dns_result.stdout) or
+    ( not zone_result.results[0].skipped) or
+    ( not zone_result.results[1].skipped)

@@ -1,94 +1,94 @@
 ---
 - name: Ensure /opt/bin exists
   file:
-      path: /opt/bin
-      state: directory
+    path: /opt/bin
+    state: directory
 
 - name: dnf update
   package:
-      name: "*"
-      state: latest # noqa 403
+    name: "*"
+    state: latest # noqa 403
 
 # TODO(rkm 2020-04-27) Move these to a vars array
 - name: Install dnf packages
   package:
-      name:
-          - ImageMagick
-          - bash-completion
-          - bind-utils
-          - bzip2
-          - clang
-          - clang-devel
-          - curl
-          - dkms
-          - dos2unix
-          - gcc
-          - gdb
-          - graphviz
-          - htop
-          - java-1.8.0-openjdk-devel
-          - java-11-openjdk-devel
-          - jq
-          - kernel-devel
-          - kernel-headers
-          - llvm
-          - llvm-devel
-          - mlocate
-          - ncdu
-          - net-tools
-          - nmap
-          - openmpi-devel
-          - p7zip
-          - perl
-          - perl-Image-ExifTool
-          - psmisc
-          - python36-devel
-          - python38-devel
-          - rsync
-          - strace
-          - telnet
-          - traceroute
-          - tree
-          - units
-          - usbutils
-          - vim
-          - wget
-          - xdg-utils
-          - xorg-x11-server-Xorg
-          - xorg-x11-xauth
+    name:
+      - ImageMagick
+      - bash-completion
+      - bind-utils
+      - bzip2
+      - clang
+      - clang-devel
+      - curl
+      - dkms
+      - dos2unix
+      - gcc
+      - gdb
+      - graphviz
+      - htop
+      - java-1.8.0-openjdk-devel
+      - java-11-openjdk-devel
+      - jq
+      - kernel-devel
+      - kernel-headers
+      - llvm
+      - llvm-devel
+      - mlocate
+      - ncdu
+      - net-tools
+      - nmap
+      - openmpi-devel
+      - p7zip
+      - perl
+      - perl-Image-ExifTool
+      - psmisc
+      - python36-devel
+      - python38-devel
+      - rsync
+      - strace
+      - telnet
+      - traceroute
+      - tree
+      - units
+      - usbutils
+      - vim
+      - wget
+      - xdg-utils
+      - xorg-x11-server-Xorg
+      - xorg-x11-xauth
 
 - name: Install dnf packages - PowerTools
   dnf:
-      enablerepo: PowerTools
-      name:
-          - xorg-x11-apps
+    enablerepo: PowerTools
+    name:
+      - xorg-x11-apps
 
 - name: remove unused packages
   package:
-      name:
-          - podman
-      state: absent
+    name:
+      - podman
+    state: absent
 
 - name: Run geerlingguy.ntp
   include_role:
-      name: geerlingguy.ntp
+    name: geerlingguy.ntp
 
 - name: Set docker username
   set_fact:
-      docker_users: ["{{ username }}"]
+    docker_users: ["{{ username }}"]
 
 - name: Run rkm.docker
   include_role:
-      name: rkm.docker
+    name: rkm.docker
 
 - name: Check if rust installed
   stat:
-      path: "{{ lookup('env', 'HOME') }}/.local/share/cargo/bin/rustup"
+    path: "{{ lookup('env', 'HOME') }}/.local/share/cargo/bin/rustup"
   register: stat_result
 
 - name: Install rust
   become: "{{ username }}"
   shell: |
-      set -o pipefail
-      curl https://sh.rustup.rs -sSf | sh -s -- --profile minimal --no-modify-path -y
+    set -o pipefail
+    curl https://sh.rustup.rs -sSf | sh -s -- --profile minimal --no-modify-path -y
   when: not stat_result.stat.exists

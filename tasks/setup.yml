@@ -1,6 +1,6 @@
 ---
 - name: Create tmpdir
   tempfile:
-      state: directory
+    state: directory
   register: tempdir
   changed_when: false

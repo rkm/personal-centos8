@@ -8,27 +8,27 @@
 
 - name: Force git install if the version numbers do not match
   set_fact:
-      require_git_install: true
+    require_git_install: true
   when: >
-      git_installed_version.rc != 0 or
-      (git_installed_version.stdout | regex_replace("^.*?([0-9\.]+)$", "\\1")
-        is version(git_version, operator="!="))
+    git_installed_version.rc != 0 or
+    (git_installed_version.stdout | regex_replace("^.*?([0-9\.]+)$", "\\1")
+      is version(git_version, operator="!="))
 
 - name: Set git role workspace to the tempdir
   set_fact:
-      workspace: "{{ tempdir.path }}"
+    workspace: "{{ tempdir.path }}"
   when:
-      - require_git_install | default(false)
+    - require_git_install | default(false)
 
 - name: Run geerlingguy.git
   include_role:
-      name: geerlingguy.git
+    name: geerlingguy.git
   when:
-      - require_git_install | default(false)
+    - require_git_install | default(false)
 
 - name: Ensure git-completion.bash is at the right version
   get_url:
-      url: https://raw.githubusercontent.com/git/git/v{{ git_version }}/contrib/completion/git-completion.bash
-      dest: /etc/bash_completion.d/git
-      mode: 0644
-      backup: true
+    url: https://raw.githubusercontent.com/git/git/v{{ git_version }}/contrib/completion/git-completion.bash
+    dest: /etc/bash_completion.d/git
+    mode: 0644
+    backup: true

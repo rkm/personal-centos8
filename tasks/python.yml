@@ -1,17 +1,17 @@
 ---
 - name: Set the venv path fact
   set_fact:
-      venv_path: /home/{{ username }}/.local/lib/venv
+    venv_path: /home/{{ username }}/.local/lib/venv
 
 - name: Check if virtualenv installed
   stat:
-      path: "{{ venv_path }}"
+    path: "{{ venv_path }}"
   register: venv_stat
 
 - name: Grab virtualenv.pyz
   get_url:
-      url: https://bootstrap.pypa.io/virtualenv.pyz
-      dest: "{{ tempdir.path }}/virtualenv.pyz"
+    url: https://bootstrap.pypa.io/virtualenv.pyz
+    dest: "{{ tempdir.path }}/virtualenv.pyz"
   changed_when: false # Will always be changed
   when: not venv_stat.stat.exists
 
@@ -21,9 +21,9 @@
 
 - name: Install python tools
   pip:
-      name: "{{ python_libs }}"
-      executable: "{{ venv_path }}/bin/pip"
-      extra_args: --upgrade
+    name: "{{ python_libs }}"
+    executable: "{{ venv_path }}/bin/pip"
+    extra_args: --upgrade
   register: pip_install_result
 
 - name: Print tools install if changed
@@ -32,9 +32,9 @@
 
 - name: Symlink python libs to .local/bin
   file:
-      src: "{{ venv_path }}/bin/{{ item }}"
-      dest: /home/{{ username }}/.local/bin/{{ item }}
-      state: link
+    src: "{{ venv_path }}/bin/{{ item }}"
+    dest: /home/{{ username }}/.local/bin/{{ item }}
+    state: link
   with_items: "{{ python_libs }}"
 # NOTE(rkm 2020-08-17) Could do this, but it's slow and will run regularly anyway
 # - name: Upgrade virtualenv embed wheels
