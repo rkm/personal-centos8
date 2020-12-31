@@ -1,0 +1,12 @@
+semi: false
+useTabs: false
+proseWrap: always
+overrides:
+  - files: "*.md"
+    options:
+      semi: true
+      tabWidth: 4
+  - files: "*.y(a|)ml"
+    options:
+      semi: true
+      tabWidth: 2
