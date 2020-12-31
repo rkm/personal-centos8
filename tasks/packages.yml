@@ -38,6 +38,7 @@
           - net-tools
           - nmap
           - openmpi-devel
+          - p7zip
           - perl
           - perl-Image-ExifTool
           - psmisc
