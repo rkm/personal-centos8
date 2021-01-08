@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -euxo pipefail
 
 PKG=dnf
 OS=8
 
-if [ ! -f ~/.ssh/id_* ] && ! ssh-add -l &> /dev/null ; then
+if ! compgen -G  ~/.ssh/id_* > /dev/null && ! ssh-add -l &> /dev/null ; then
     echo Error: Need an ssh key to continue
     exit 1
 fi
