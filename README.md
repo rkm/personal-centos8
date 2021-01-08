@@ -50,3 +50,4 @@ See `vars/main.yml` for configurable settings. You should at least change the
 -   Add packer & terraform from hashicorp repo
 -   Need to add user to vboxsf
 -   Check for missing / unused tasks
+-   `refresh-meta` script
