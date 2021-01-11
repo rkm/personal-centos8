@@ -51,3 +51,4 @@ See `vars/main.yml` for configurable settings. You should at least change the
 -   Need to add user to vboxsf
 -   Check for missing / unused tasks
 -   `refresh-meta` script
+-   Autoupdater for versions in `vars`
