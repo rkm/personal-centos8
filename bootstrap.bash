@@ -31,7 +31,7 @@ tar xzf repo.tgz
 pushd rkm-personal-centos${OS}-*
 
 ../venv_bootstrap/bin/ansible-galaxy install -r requirements.yml
-../venv_bootstrap/bin/ansible-playbook -K local.yml --tags boot,login
+../venv_bootstrap/bin/ansible-playbook -v -K local.yml --tags boot,login
 
 popd
 
