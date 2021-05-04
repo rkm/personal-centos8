@@ -12,6 +12,7 @@
     - .config/npm
     - .config/vim
     - .local
+    - .local/bin
     - .local/share
     - .local/share/cargo
     - .local/share/rustup
@@ -64,7 +65,7 @@
 - name: Copy scripts
   copy:
     src: files/{{ item }}
-    dest: /home/{{ username }}/.local/bin
+    dest: /home/{{ username }}/.local/bin/
     mode: 0770
     remote_src: true
     backup: true
