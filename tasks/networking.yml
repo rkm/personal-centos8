@@ -20,19 +20,11 @@
   register: host_zone
   when: "'host' not in host_zone.stdout"
 
-- name: Ensure masquerade is enabled for public zone
-  firewalld:
-    zone: public
-    masquerade: "true"
-    permanent: yes
-    state: enabled
-  register: public_zone
-
-- name: Reload firewalld # noqa 503
+- name: Reload firewalld
   systemd:
     name: firewalld
     state: restarted
-  when: public_zone.changed | bool or host_zone.changed | bool
+  when: host_zone.changed
 
 - name: Get DNS servers
   command: nmcli -t -f IP4.DNS device show enp0s3
