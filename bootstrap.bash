@@ -25,6 +25,11 @@ wget https://bootstrap.pypa.io/virtualenv.pyz
 python3 virtualenv.pyz -ppython3.6 --system-site-packages venv_bootstrap
 ./venv_bootstrap/bin/pip install --upgrade ansible
 
+# NOTE(rkm 2021-05-04) Temp hack until Rocky is recognised as a RedHat distro
+if [ -f /etc/rocky-release ]; then
+    sed -i "s/AlmaLinux']/AlmaLinux', \'Rocky\']/" venv_bootstrap/lib/python3.6/site-packages/ansible/module_utils/facts/system/distribution.py
+fi
+
 curl -Ls https://api.github.com/repos/rkm/personal-centos${OS}/tarball > repo.tgz
 tar xzf repo.tgz
 
