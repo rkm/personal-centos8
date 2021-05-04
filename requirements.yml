@@ -1,5 +1,4 @@
 ---
 - src: gantsign.golang
-- src: rkm.docker
 - src: geerlingguy.git
 - src: geerlingguy.ntp

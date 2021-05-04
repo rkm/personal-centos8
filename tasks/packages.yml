@@ -65,23 +65,9 @@
     name:
       - xorg-x11-apps
 
-- name: remove unused packages
-  package:
-    name:
-      - podman
-    state: absent
-
 - name: Run geerlingguy.ntp
   include_role:
     name: geerlingguy.ntp
-
-- name: Set docker username
-  set_fact:
-    docker_users: ["{{ username }}"]
-
-- name: Run rkm.docker
-  include_role:
-    name: rkm.docker
 
 - name: Check if rust installed
   stat:

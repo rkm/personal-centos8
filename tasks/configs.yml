@@ -7,8 +7,6 @@
   with_items:
     - .config
     - .config/containers
-    # NOTE(rkm 2020-08-16) Still required for login config
-    - .config/docker
     - .config/git
     - .config/maven
     - .config/npm
