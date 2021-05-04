@@ -14,7 +14,7 @@
 
     - include: tasks/networking.yml
       become: true
-      tags: [never, boot]
+      tags: [never, boot, net]
 
     - include: tasks/ssh.yml
       become: true

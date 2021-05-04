@@ -70,5 +70,4 @@
     state: reloaded
   when: >
     ("1.1.1.1" not in dns_result.stdout) or
-    ( not zone_result.results[0].skipped) or
-    ( not zone_result.results[1].skipped)
+    ( zone_result.changed )
