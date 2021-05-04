@@ -61,7 +61,7 @@
 
 - name: Install dnf packages - PowerTools
   dnf:
-    enablerepo: PowerTools
+    enablerepo: powertools
     name:
       - xorg-x11-apps
 
