@@ -3,6 +3,7 @@
   file:
     path: "{{ lookup('env', 'HOME') }}/{{ item }}"
     state: directory
+    mode: u=rwx,g=rwx,o=
   with_items:
     - .config
     - .config/containers

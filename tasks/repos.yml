@@ -25,22 +25,21 @@
     ssh_opts: -o StrictHostKeyChecking=no
     update: false
   with_items: "{{ persistent_repos }}"
-
 # - name: Fetch all repos
 #   script: fetch_all.py {{ lookup('env', 'HOME') }}/dev
 #   register: fetch_result
 #   changed_when: fetch_result.rc != 0
 
 # NOTE(rkm 2020-05-02) Uses the prune tags git alias
-- name: Prune tags
-  shell: |
-    : \
-    && set -exuo pipefail \
-    && find {{ lookup('env', 'HOME') }}/dev -type f -name .git \
-     | xargs dirname \
-     | xargs -l -I{} git -C {} pt
-  register: fetch_result
-  changed_when: fetch_result.rc != 0
+# - name: Prune tags
+#   shell: |
+#     : \
+#     && set -exuo pipefail \
+#     && find {{ lookup('env', 'HOME') }}/dev -type f -name .git \
+#      | xargs dirname \
+#      | xargs -l -I{} git -C {} pt
+#   register: fetch_result
+#   changed_when: fetch_result.rc != 0
 # - name: pre-commit autoupdate
 #   shell: |
 #       : \

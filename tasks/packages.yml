@@ -3,6 +3,7 @@
   file:
     path: /opt/bin
     state: directory
+    mode: u=rwx,g=rx,o=rx
 
 - name: dnf update
   package:

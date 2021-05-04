@@ -16,6 +16,7 @@
   copy:
     src: files/host.xml
     dest: /etc/firewalld/zones/host.xml
+    mode: u=rw,g=r,o=r
   register: host_zone
   when: "'host' not in host_zone.stdout"
 

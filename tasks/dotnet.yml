@@ -2,14 +2,14 @@
 # TODO(rkm 2020-08-23) use allowerasing when we have ansible 2.10
 - name: Install dotnet dependencies
   become: true
-  shell: dnf -y --allowerasing install libcurl libicu zlib openssl-libs compat-openssl10 krb5-libs
+  command: dnf -y --allowerasing install libcurl libicu zlib openssl-libs compat-openssl10 krb5-libs
   args:
     warn: false
   register: result
   changed_when: result.rc != 0
 
 - name: Check current version
-  shell: "dotnet --version"
+  command: "dotnet --version"
   failed_when: false
   changed_when: false
   register: dotnet_result
@@ -27,7 +27,7 @@
   when: dotnet_need_install
 
 - name: Install dotnet
-  shell: "{{ tempdir.path }}/dotnet-install.sh --version {{ dotnet_sdk_version }} --install-dir {{ lookup('env', 'HOME') }}/.local/lib/dotnet"
+  command: "{{ tempdir.path }}/dotnet-install.sh --version {{ dotnet_sdk_version }} --install-dir {{ lookup('env', 'HOME') }}/.local/lib/dotnet"
   when: dotnet_need_install
 
 - name: Create symlink to dotnet

@@ -6,7 +6,7 @@
     state: absent
 
 - name: get current tmux version if any
-  shell: tmux -V
+  command: tmux -V
   failed_when: false
   changed_when: false
   register: tmux_version_check

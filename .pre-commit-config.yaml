@@ -99,5 +99,5 @@ repos:
     rev: v5.0.8
     hooks:
       - id: ansible-lint
-        files: \.(yaml|yml)$
-        additional_dependencies: [ansible<2.9]
+        additional_dependencies:
+          - .[community]

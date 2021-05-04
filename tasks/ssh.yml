@@ -3,9 +3,10 @@
   template:
     src: templates/ssh_host_config.j2
     dest: /etc/ssh/ssh_config
+    mode: u=rw,g=,o=
   register: result
 
-- name: Restart sshd
+- name: Restart sshd # noqa no-handler
   systemd:
     name: sshd
     state: restarted
