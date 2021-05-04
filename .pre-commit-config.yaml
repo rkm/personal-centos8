@@ -99,5 +99,6 @@ repos:
     rev: v5.0.8
     hooks:
       - id: ansible-lint
+        args: [-c, .meta/ansible-lint.yml]
         additional_dependencies:
           - .[community]
