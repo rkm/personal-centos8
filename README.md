@@ -20,12 +20,12 @@ VirtualBox.
 Drop an SSH key pair onto a new VM, or use ssh-agent, and run:
 
 ```bash
-> curl -Ls https://raw.githubusercontent.com/rkm/personal-centos8/master/install.sh | bash
+> curl -Ls https://raw.githubusercontent.com/rkm/personal-centos8/master/bootstrap.bash | bash
 ```
 
 ### Manual
 
-Copy & run the `install.sh` script.
+Copy & run the `bootstrap.bash` script.
 
 ## Configuration
 
