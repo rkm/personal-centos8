@@ -31,10 +31,10 @@ tar xzf repo.tgz
 pushd rkm-personal-centos${OS}-*
 
 ../venv_bootstrap/bin/ansible-galaxy install -r requirements.yml
-../venv_bootstrap/bin/ansible-playbook -K local.yml
+../venv_bootstrap/bin/ansible-playbook -K local.yml --tags boot,login
 
 popd
 
-rm -r rkm-personal-centos${OS}* repo.tgz
+rm -r ./rkm-personal-centos${OS}* repo.tgz ./venv_bootstrap virtualenv.pyz
 
-echo "Initial install complete - A reboot is recommended"
+set +x; echo "Initial install complete - A reboot is recommended"
