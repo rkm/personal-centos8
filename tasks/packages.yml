@@ -23,6 +23,7 @@
       - curl
       - dkms
       - dos2unix
+      - figlet
       - gcc
       - gdb
       - graphviz
