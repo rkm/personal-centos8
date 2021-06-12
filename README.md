@@ -53,3 +53,4 @@ See `vars/main.yml` for configurable settings. You should at least change the
 -   `refresh-meta` script
 -   Autoupdater for versions in `vars`
 -   Detect `.autoupdate` and run pre-commit autoupdate (i.e. for private repos)
+-   az from pip not dnf
