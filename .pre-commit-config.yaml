@@ -101,4 +101,4 @@ repos:
       - id: ansible-lint
         args: [-c, .meta/ansible-lint.yml]
         additional_dependencies:
-          - .[community]
+          - .[core]
