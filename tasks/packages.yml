@@ -16,6 +16,7 @@
     name:
       - ant
       - bash-completion
+      - bc
       - bind-utils
       - bzip2
       - clang
