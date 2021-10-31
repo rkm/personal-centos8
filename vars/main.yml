@@ -3,6 +3,7 @@
 username: rkm
 
 python_libs:
+  - az
   - mypy
   - pip
   - pipdeptree
